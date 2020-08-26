@@ -23,6 +23,7 @@ public class capas_neuronales {
     this.funcionact=funcionact;
     this.b=randMat.random(1,numeroNeur,-1,1,false);
     this.W=randMat.random(numeroCon,numeroNeur,-1,1,false);
+    mul.impMat(W);
     }
 }
     class create_nn{
