@@ -476,3 +476,40 @@ class unos extends mul{
         return matriz;
     }
 }
+class inclusion
+{
+    public static double mediaVect(double[]matriz){
+        /*el vector medio es la sumatoria del array y la divicion del numero de sus elementos
+         * gato=vector de tamaño l
+         * medio = sumatoria de los elementos de gato "/" o dividido numero de elementos de gato
+         * */
+        double gato=0;
+        for(double poli:matriz){
+            gato+=poli;
+        }
+        gato=gato/matriz.length;
+        return gato;
+    }
+    public static double[]restaVect (double []predic,double[] real){
+        int numi=0;
+        if(predic.length>real.length||real.length>predic.length){
+            throw new ArrayIndexOutOfBoundsException("tu resta no es valida por favor confirma que el numero de elementos en la \n matriz restadora o la restada");
+        }
+
+        double[]jaula=new double[real.length];
+        for(double ga:predic){
+            jaula[numi]=ga-real[numi];
+            numi++;
+        }
+        return jaula;
+    }
+    public static double[] powVect(double[] palito,int exp){
+        double forma[]=new double[palito.length];
+        int tempo=0;
+        for(double poli:palito){
+            forma[tempo]=Math.pow(poli,exp);
+            tempo++;
+        }
+        return forma;
+    }
+}

@@ -26,6 +26,7 @@ public class capas_neuronales {
     mul.impMat(W);
     }
 }
+
     class create_nn{
 
 
@@ -39,18 +40,23 @@ public class capas_neuronales {
 
 }
 //error cuadratico medio
-class error {
-    public double [] errCua(double Yp,double Yr){
-        double []gato=new double[0];
 
-        return gato;
+class error {
+
+    public double [][]  errCua(double[] Yp,double[] Yr){
+        //error cuadratico medio
+        double [] cero=inclusion.powVect(inclusion.restaVect(Yp,Yr),2);
+        double [] uno=inclusion.restaVect(Yp,Yr);
+        return new double[][]{cero,uno};
     }
+
 }
 
 //entrenamiento a la red neuronal
 class entrenador{
-    public void train(){
-
+    public void train(double [][]neural_net,double[][] X,double[][] Y,double[][]l2_cost,double lr,boolean train){
+    lr=0.5;
+    train=true;
     }
 
 
