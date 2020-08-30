@@ -3,7 +3,7 @@ package com.jARIL;
 import java.security.SecureRandom;
 
 
-public class mul {
+public class mul{
     /**Esta clase hace una multiplicacion de matrices
      * por ende esta clase sera usada en la libreria de redes neuronales que
      * se hara desde 0 claro que esta libreria esta escrita en español pero
@@ -211,7 +211,7 @@ class matT extends mul{
 
 }
 //error muy raro en los metodos corregir
-class randMat extends mul{
+class randMat extends matT{
     /**matrices randomicas justas para el desarrollo de machine learning */
     /**aqui ya agregue bien las filas y columnas que mas da total funciona*/
     static double[][] polilla;
@@ -392,13 +392,13 @@ class randMat extends mul{
 
 
 }
-class entero {
-    static int [][]resulto;
-    public static void getimpRe(){
+class entero extends randMat {
+    static int [][]resulta;
+    public static void impINT(){
         try {
             int a=0;
             boolean pil=false;
-            for(int [] poli:resulto){
+            for(int [] poli:resulta){
                 for(int py:poli){
                     if(a==poli.length-1){
                         a=-1;
@@ -427,7 +427,7 @@ class entero {
 
         }
 
-         resulto=new int[][]{mov};
+         resulta=new int[][]{mov};
         return mov;
     }
 
@@ -448,7 +448,7 @@ class entero {
                 columna++;}
         }
         //System.out.println(mov[columna][fila]);
-        resulto=mov;
+        resulta=mov;
         return mov;
     }
 
@@ -456,7 +456,7 @@ class entero {
 
 
 
-class unos extends mul{
+class unos extends entero{
      static double  [][] pancito;
     public void getimpRe(){
         /**
@@ -476,7 +476,7 @@ class unos extends mul{
         return matriz;
     }
 }
-class inclusion
+class inclusion extends unos
 {
     public static double mediaVect(double[]matriz){
         /*el vector medio es la sumatoria del array y la divicion del numero de sus elementos
@@ -512,4 +512,7 @@ class inclusion
         }
         return forma;
     }
+}
+class MatJa extends inclusion{
+/** funcion que conecta todas estas clases para poder generar una libreria biable */
 }

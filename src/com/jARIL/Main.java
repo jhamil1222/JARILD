@@ -8,7 +8,8 @@ public class Main {
        //System.out.println(inclusion.mediaVect( inclusion.restaVect(new double[]{4,5,6},new double[]{1,2,3})));
        //double [] vanal=inclusion.powVect(new double[]{2,2,2},2);
        //mul.impMat(new double[][]{vanal});
-        new pio().polilla(12);
+
+
     }
 
 }
