@@ -11,10 +11,10 @@ public class capas_neuronales {
      * @author JhamilRoldanLopez
      * @version 0.0.1*/
     private double []w[],x[],y[];
-    private funcion_Act funcionact;
+    public funcion_Act funcionact;
     private int numer;
-    private double [][]W;
-    private double [][] b;
+    public double [][]W;
+    public double [][] b;
 
     int n=500;
      int p=2;
@@ -54,9 +54,12 @@ class error {
 
 //entrenamiento a la red neuronal
 class entrenador{
-    public void train(double [][]neural_net,double[][] X,double[][] Y,double[][]l2_cost,double lr,boolean train){
+    public void train(capas_neuronales neural_net,double[][] X,double[][] Y,double[][]l2_cost,double lr,boolean train){
     lr=0.5;
     train=true;
+
+    double[][]z=MatJa.SumVect(MatJa.result(neural_net.W,X),neural_net.b);
+
     }
 
 

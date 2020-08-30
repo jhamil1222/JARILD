@@ -455,27 +455,30 @@ class entero extends randMat {
 }
 
 
+class unos extends entero {
+    static double[][] pancito;
 
-class unos extends entero{
-     static double  [][] pancito;
-    public void getimpRe(){
+    public void getimpRe() {
         /**
          * impresion de la matriz randomica
          */
-        super.resulto=pancito;
+        super.resulto = pancito;
         super.getimpRe();
+
     }
-    public static double[][] insert(double [][] matriz,int Numcol){
-        if(Numcol>=matriz[0].length){
-            throw new ArrayIndexOutOfBoundsException("error el numero de columnas sobrepasa al de la matris en " +( Numcol - matriz[0].length+1)+"\n por favor ajusta el valor al valor que desees pero que no sobrepase el valor real que es "+(matriz[0].length-1));
+
+    public static double[][] insert(double[][] matriz, int Numcol) {
+        if (Numcol >= matriz[0].length) {
+            throw new ArrayIndexOutOfBoundsException("error el numero de columnas sobrepasa al de la matris en " + (Numcol - matriz[0].length + 1) + "\n por favor ajusta el valor al valor que desees pero que no sobrepase el valor real que es " + (matriz[0].length - 1));
         }
-        for(int fil=0; fil< matriz.length; fil++){
-            matriz[fil][Numcol]=1;
+        for (int fil = 0; fil < matriz.length; fil++) {
+            matriz[fil][Numcol] = 1;
         }
-        pancito=matriz;
+        pancito = matriz;
         return matriz;
     }
 }
+
 class inclusion extends unos
 {
     public static double mediaVect(double[]matriz){
@@ -490,6 +493,7 @@ class inclusion extends unos
         gato=gato/matriz.length;
         return gato;
     }
+
     public static double[]restaVect (double []predic,double[] real){
         int numi=0;
         if(predic.length>real.length||real.length>predic.length){
@@ -503,7 +507,7 @@ class inclusion extends unos
         }
         return jaula;
     }
-    public static double[] powVect(double[] palito,int exp){
+    public static double[] powVect(double[] palito,double exp){
         double forma[]=new double[palito.length];
         int tempo=0;
         for(double poli:palito){
@@ -512,7 +516,137 @@ class inclusion extends unos
         }
         return forma;
     }
+    public static double[] []powVectM(double[][] prim,double[][]seg,boolean negaExp){
+        int numi=0,gato=0;
+        double[][]jaula=new double[seg.length][seg[0].length];
+        for(double [] paso:prim) {
+            numi=0;
+            for (double ga : paso) {
+                jaula[gato][numi] = Math.pow(ga,((negaExp)?-seg[gato][numi]:seg[gato][numi]));
+
+                numi++;
+            }
+            gato++;
+        }
+        return jaula;
+    }
+
 }
 class MatJa extends inclusion{
 /** funcion que conecta todas estas clases para poder generar una libreria biable */
+public static double[][] SumVect(double[][] prim,double[][]seg){
+    int numi=0,gato=0;
+    double[][]jaula=new double[seg.length][seg[0].length];
+    for(double [] paso:prim) {
+        numi=0;
+        for (double ga : paso) {
+            jaula[gato][numi] = ga + seg[gato][numi];
+
+            numi++;
+        }
+        gato++;
+    }
+    return jaula;
+}
+    public static double[][] DIVect(double[][] prim,double[][]seg){
+        int numi=0,gato=0;
+        double[][]jaula=new double[seg.length][seg[0].length];
+        for(double [] paso:prim) {
+            numi=0;
+            for (double ga : paso) {
+                jaula[gato][numi] = ga / seg[gato][numi];
+
+                numi++;
+            }
+            gato++;
+        }
+        return jaula;
+    }
+public static double [][]ingresEnt(double [] []prim,double numero){
+    int numi=0,gato=0;
+    double[][]jaula=new double[prim.length][prim[0].length];
+    for(double [] paso:prim) {
+        numi=0;
+        for (double ga : paso) {
+            jaula[gato][numi] = numero;
+
+            numi++;
+        }
+        gato++;
+    }
+    return jaula;
+
+}
+
+    public static double [][]ingresEnt(int fila, int columna,double numero){
+        int numi=0,gato=0;
+        double[][]jaula=new double[fila][columna];
+        for(double [] paso:jaula) {
+            numi=0;
+            for (double ga : paso) {
+                jaula[gato][numi] = numero;
+
+                numi++;
+            }
+            gato++;
+        }
+        return jaula;
+
+    }
+
+    public static double[][] MAX(double[][] prim,double[][] seg){
+        int numi=0,gato=0;
+        double[][]jaula=new double[seg.length][seg[0].length];
+        for(double [] paso:prim) {
+            numi=0;
+            for (double ga : paso) {
+                jaula[gato][numi] = Math.max(ga, seg[gato][numi]);
+
+                numi++;
+            }
+            gato++;
+        }
+        return jaula;
+
+    }
+    public static double[][] restonVect(double[][] prim,double[][]seg){
+        int numi=0,gato=0;
+        double[][]jaula=new double[seg.length][seg[0].length];
+        for(double [] paso:prim) {
+            numi=0;
+            for (double ga : paso) {
+                jaula[gato][numi] = ga - seg[gato][numi];
+
+                numi++;
+            }
+            gato++;
+        }
+        return jaula;
+    }
+    public static double[][] E(int filas,int columnas){
+        int columna=0;
+        int fila=0;
+        double solo=0;
+        //System.out.println("filas"+filas+"columnas"+columnas);
+        double [][] matriz=new double[filas][columnas];
+        double [][]mov=new double[matriz.length][matriz[0].length];
+        for(double []poit: matriz){
+            fila=0;
+            for(double pan : poit){
+                solo=poy.nextDouble();
+                mov[columna][fila]= Math.E;
+                //System.out.println(mov[columna][fila]+" columna "+columna+" fila "+fila);
+                //aqui modifique algo
+
+                fila++;
+            }
+
+            //aqui igual
+
+            columna++;}
+
+        polilla=mov;
+        return mov;
+    }
+
 }

@@ -9,6 +9,9 @@ public class Main {
        //double [] vanal=inclusion.powVect(new double[]{2,2,2},2);
        //mul.impMat(new double[][]{vanal});
 
+        double [][]gatito={{-1,0,-1}};
+     MatJa.impMat(funcion_Act.relu(gatito)[1]);
+
 
     }
 
