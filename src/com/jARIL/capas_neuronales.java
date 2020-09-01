@@ -43,22 +43,23 @@ public class capas_neuronales {
 
 class error {
 
-    public double [][]  errCua(double[] Yp,double[] Yr){
+    public static double [][][]  errCua(double[][] Yp,double[] []Yr){
         //error cuadratico medio
-        double [] cero=inclusion.powVect(inclusion.restaVect(Yp,Yr),2);
-        double [] uno=inclusion.restaVect(Yp,Yr);
-        return new double[][]{cero,uno};
+        double [][] cero=MatJa.powVectM(MatJa.restonVect(Yp,Yr),MatJa.ingresEnt(Yp,2),false);
+        double [][] uno=MatJa.restonVect(Yp,Yr);
+        return new double[][][]{cero,uno};
     }
 
 }
 
 //entrenamiento a la red neuronal
 class entrenador{
-    public void train(capas_neuronales neural_net,double[][] X,double[][] Y,double[][]l2_cost,double lr,boolean train){
+    public static void train(capas_neuronales neural_net,double[][] X,double[][] Y,double[][]l2_cost,double lr,boolean train){
     lr=0.5;
     train=true;
 
     double[][]z=MatJa.SumVect(MatJa.result(neural_net.W,X),neural_net.b);
+        error.errCua(funcion_Act.sigm(z)[0],MatJa.random(z.length,z[0].length));
 
     }
 

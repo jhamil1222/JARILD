@@ -5,7 +5,9 @@ public class funcion_Act {
     /**funcion de activacion */
     //sigmoide la columna 0 esta definida como la funcion sigmoide y su derivada en 1
     public static double  [][][]sigm(double [][]x){
-        double[][] sha= MatJa.powVectM(MatJa.E(x.length,x[0].length),x,true);
+
+        double[][] sha= MatJa.DIVect(MatJa.ingresEnt(x,1),MatJa.SumVect(MatJa.ingresEnt(x,1),MatJa.powVectM(MatJa.E(x.length,x[0].length),x,true)));
+
         double [][] seg= MatJa.result(x,MatJa.restonVect(MatJa.ingresEnt(x,1),x));
         return new double[][][]{sha,seg};
         //return new double []{1/(1+Math.pow(Math.E,-x)),x*(1-x)};

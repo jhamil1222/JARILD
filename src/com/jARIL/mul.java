@@ -518,11 +518,11 @@ class inclusion extends unos
     }
     public static double[] []powVectM(double[][] prim,double[][]seg,boolean negaExp){
         int numi=0,gato=0;
-        double[][]jaula=new double[seg.length][seg[0].length];
+        double[][]jaula=new double[prim.length][seg[0].length];
         for(double [] paso:prim) {
             numi=0;
             for (double ga : paso) {
-                jaula[gato][numi] = Math.pow(ga,((negaExp)?-seg[gato][numi]:seg[gato][numi]));
+                jaula[gato][numi] = Math.pow(ga,((negaExp)?-1*seg[gato][numi]:seg[gato][numi]));
 
                 numi++;
             }
@@ -548,6 +548,22 @@ public static double[][] SumVect(double[][] prim,double[][]seg){
     }
     return jaula;
 }
+    public static double[][] SumVectno(double[][] prim,double[][]seg){
+        int numi=0,gato=0;
+        double[][]jaula=new double[seg.length][seg[0].length];
+        for(double [] paso:prim) {
+            numi=0;
+            for (double[] coneji:seg)
+            numi=0;
+            for (double ga : paso) {
+                jaula[gato][numi] = ga + seg[gato][numi];
+
+                numi++;
+            }
+            gato++;
+        }
+        return jaula;
+    }
     public static double[][] DIVect(double[][] prim,double[][]seg){
         int numi=0,gato=0;
         double[][]jaula=new double[seg.length][seg[0].length];
