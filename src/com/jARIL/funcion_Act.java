@@ -19,3 +19,13 @@ public class funcion_Act {
     }
 
 }
+class error {
+
+    public static double [][] [] errCua(double[][] Yp,double[] []Yr){
+        //error cuadratico medio
+        double  cero=  MatJa.sumatoriaV(MatJa.result(0.5,MatJa.powVectM(MatJa.restonVect(Yp,Yr),MatJa.ingresEnt(Yp,2),false)));
+        double [][] uno=MatJa.restonVect(Yp,Yr);
+        return new double[][][]{{{cero}},uno};
+    }
+
+}

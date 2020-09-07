@@ -87,11 +87,11 @@ public class mul{
         for(double pan : poit){
             mov[columna][fila]=solo*pan;
             //System.out.println(mov[columna][fila]+" columna "+columna+" fila "+fila);
-            if(fila<mov.length-1){
-            fila++;}
+
+            fila++;
         }
-           if(columna<mov[0].length-1){
-            columna++;}
+
+            columna++;
         }
         //System.out.println(mov[columna][fila]);
         resulto=mov;
@@ -533,6 +533,18 @@ class inclusion extends unos
 
 }
 class MatJa extends inclusion{
+    public static double sumatoriaV(double[][]op){
+
+        double pan=0;
+        for(double[] i:op){
+            for(double po:i){
+                pan+=po;
+
+            }
+
+        }
+        return pan;
+    }
 /** funcion que conecta todas estas clases para poder generar una libreria biable */
 public static double[][] SumVect(double[][] prim,double[][]seg){
     int numi=0,gato=0;
@@ -548,21 +560,25 @@ public static double[][] SumVect(double[][] prim,double[][]seg){
     }
     return jaula;
 }
-    public static double[][] SumVectno(double[][] prim,double[][]seg){
-        int numi=0,gato=0;
-        double[][]jaula=new double[seg.length][seg[0].length];
-        for(double [] paso:prim) {
-            numi=0;
-            for (double[] coneji:seg)
-            numi=0;
-            for (double ga : paso) {
-                jaula[gato][numi] = ga + seg[gato][numi];
+    /*este es un error grabe pero no se tomara en cuenta a vectorno */
+    public static double[][] SumVectno(double[][] prim,double seg){
+        int columna=0;
+        int fila=0;
+        double [][]mov=new double[prim.length][prim[0].length];
+        for(double []poit: prim){
+            fila=0;
+            for(double pan : poit){
+                mov[columna][fila]=pan+seg;
+                //System.out.println(mov[columna][fila]+" columna "+columna+" fila "+fila);
 
-                numi++;
+                    fila++;
             }
-            gato++;
-        }
-        return jaula;
+
+                columna++;}
+
+        //System.out.println(mov[columna][fila]);
+
+        return mov;
     }
     public static double[][] DIVect(double[][] prim,double[][]seg){
         int numi=0,gato=0;

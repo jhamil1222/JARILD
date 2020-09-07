@@ -1,37 +1,47 @@
 package com.jARIL;
 
+import java.security.SecureRandom;
+import java.util.Random;
+
 public class Main {
 
     public static void main(String[] args) {
-      //new capas_neuronales(12,13, null);
+        //new capas_neuronales(12,13, null);
         //mul.impMat(new double[][]{new error().restaVect(new double[]{2,3,4},new double[]{1,2})});
-       //System.out.println(inclusion.mediaVect( inclusion.restaVect(new double[]{4,5,6},new double[]{1,2,3})));
-       //double [] vanal=inclusion.powVect(new double[]{2,2,2},2);
-       //mul.impMat(new double[][]{vanal});
-        double[][] X = {{2,2,1,2}, {1,2,2,2, 1},{0,2,2,0,1,0}};
-        int numeroCon = X.length, numeroNeur =X[0].length;
-        double W[][] = randMat.random(numeroCon, numeroNeur, -1, 1, false);
-        double[][] b = randMat.random(numeroCon, numeroNeur, -1, 1, false);
-        double[][] z;
-        double[][][] polilla=null;
-        for(int qui=0;qui<50000; qui++) {
+        //System.out.println(inclusion.mediaVect( inclusion.restaVect(new double[]{4,5,6},new double[]{1,2,3})));
+        //double [] vanal=inclusion.powVect(new double[]{2,2,2},2);
+        //mul.impMat(new double[][]{vanal});
+        double [][]x={{0.05,0.10}};
+        double [][][]w={{{0.15,0.20},{0.25,0.30}},{{0.40,0.45},{0.50,0.55}}};
+        double [][]b={{0.35,0.60}};
+        double[][]y={{0.01,0.99}};
+        /*Verificar que esta parte sea viable por varias razones estoy hablando de h
+        *
+        * */
+        double salidas[][][]=new double [w.length+1][x.length][x.length];
+        double capaact [][][]=new double [w.length+1][x.length][x.length];
+        /*con este for separamos las salidas de las capas y las salidas de
+        las neuronas son la variable capaact tenemos las salidas neuronales de funcion de activacion
+        y la
+        variable salidas tiene como resultado las salidas neuronales
+         */
+        for(int gato=0; gato<w.length; gato++){
+           x = MatJa.SumVectno(MatJa.result(x, MatJa.matTi(w[gato])),b[0][gato]);
+           salidas[gato]=x;
 
-          z= MatJa.SumVect(MatJa.result(W, X), b);
-            //MatJa.impMat(error.errCua(funcion_Act.sigm(z)[0], X)[0]);
-            polilla = error.errCua(funcion_Act.sigm(z)[0], X);
-
-            //MatJa.impMat(MatJa.restonVect(W, MatJa.result(MatJa.ingresEnt(W, 0.001), polilla[1])));
+           x=funcion_Act.sigm(x)[0];
+           capaact[gato]=x;
 
 
-            MatJa.impMat(z);
-            W=MatJa.restonVect(W, MatJa.result(MatJa.ingresEnt(W, 0.01), polilla[1]));
-            b=MatJa.restonVect(b, MatJa.result(MatJa.ingresEnt(b, 0.01), polilla[1]));
         }
-        System.out.println("error");
+        double erri=error.errCua(y,capaact[1])[0][0][0];
 
-        MatJa.impMat(polilla[0]);
-        MatJa.impMat(W);
 
+        //matT.impMat(capa[1]);
+        //MatJa.impMat( h[1]);
+        //MatJa.impMat(h);
+        //double[][] poli=MatJa.SumVectno(h,b);
     }
 
-}
+
+    }

@@ -41,16 +41,7 @@ public class capas_neuronales {
 }
 //error cuadratico medio
 
-class error {
 
-    public static double [][][]  errCua(double[][] Yp,double[] []Yr){
-        //error cuadratico medio
-        double [][] cero=MatJa.powVectM(MatJa.restonVect(Yp,Yr),MatJa.ingresEnt(Yp,2),false);
-        double [][] uno=MatJa.restonVect(Yp,Yr);
-        return new double[][][]{cero,uno};
-    }
-
-}
 
 //entrenamiento a la red neuronal
 class entrenador{
