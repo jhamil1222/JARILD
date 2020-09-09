@@ -594,6 +594,20 @@ public static double[][] SumVect(double[][] prim,double[][]seg){
         }
         return jaula;
     }
+    public static double[][] mulTiGran(double[][] prim,double[][]seg){
+        int numi=0,gato=0;
+        double[][]jaula=new double[seg.length][seg[0].length];
+        for(double [] paso:prim) {
+            numi=0;
+            for (double ga : paso) {
+                jaula[gato][numi] = ga * seg[gato][numi];
+
+                numi++;
+            }
+            gato++;
+        }
+        return jaula;
+    }
 public static double [][]ingresEnt(double [] []prim,double numero){
     int numi=0,gato=0;
     double[][]jaula=new double[prim.length][prim[0].length];
@@ -680,5 +694,25 @@ public static double [][]ingresEnt(double [] []prim,double numero){
         polilla=mov;
         return mov;
     }
+    public static double [][][]memoriaFantasma(double[][][] errore) {
+        int gato = 0;
+        int pol = 0;
+        int pio = 0;
+        double[][][] polilla = new double[errore.length][errore[0].length][errore[0][0].length];
+        for (double[][] poli : errore) {
+            pol=0;
+            for (double[] pu : poli) {
+                gato=0;
+                for (double pis : pu) {
+                    polilla[pio][pol][gato]=pis;
+                    gato++;
+                }
+                pol++;
+            }
+            pio++;
 
+
+        }
+        return polilla;
+    }
 }
