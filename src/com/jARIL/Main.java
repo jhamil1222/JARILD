@@ -21,6 +21,8 @@ public class Main {
         //asignarle a una matriz otra matriz da lugar a lo que yo llamo desastre estatico ya que la
         //matriz se parece a un conjunto de variables estaticas en una clase no se asigna directo sino de uno en uno
         cusito=MatJa.memoriaFantasma(w);
+        //nota seguir de serca x que tuene una contaminacion de meoria mouy importante
+        double [][][]yugo=MatJa.memoriaFantasma(new double[][][]{x});
         double[][] b = {{0.35, 0.60}};
         double[][] y = {{0.01, 0.99}};
         /*Verificar que esta parte sea viable por varias razones estoy hablando de h
@@ -55,10 +57,13 @@ public class Main {
         double []erro=new double[capaact.length];
         int oli=0;
         double errorW=0;
-        double gato=0;
+        double put=0;
         int sopas=0;
         double[][] err=new double[capaact.length][capaact[0].length];
         double[] wu=new double[w.length*w[0].length];
+
+
+
 
         //con este for evaluamos la ultima capa o capa de salida y todos sus valores
         for(int gat=0; gat<capaact.length;gat++) {
@@ -83,21 +88,41 @@ public class Main {
               errorW = erro[gat] * err[0][gat] * capaact[0][0][gat];
                 //System.out.println(error[0][gat] );
               //nota aqui modificar esta variable ya que estamos usando el valor de capaact
-              gato = w[1][gat][oli];
+              put = w[1][gat][oli];
 
               //calculamos el peso actualizado
               //reemplazar gat y oli por razones de optimizacion ya que solo estan dadas a dos valores
-              w[1][gat][oli]= gato - (ratio * errorW);
+              w[1][gat][oli]= put - (ratio * errorW);
 
                 sopas++;
           }
         }
-        //backpropagetion capas ocultas
-        double pio=2*(1.0/2.0)*(y[0][0]-capaact[1][0][0])*(-1)*err[0][0];
-        double pol=2*(1.0/2.0)*(y[0][1]-capaact[1][0][1])*(-1)*err[0][1];
-        double bugx =pio*cusito[1][0][0];
-        System.out.println(bugx);
+        /*aqui evaluaremos las capas ocultas pero eso si hay que modificar algunas cosas ya que estamos trabajando con
+        *las demas capas restantes y en este caso ya no habria que tomar solo una capa
+        */
+        sopas=0;
+        for(int gat=0; gat<capaact[1][0].length;gat++) {
 
+            for(oli=0; oli<w[gat][0].length; oli++) {
+                //backpropagetion capas ocultas
+                double pio = 2 * (1.0 / 2.0) * (y[0][0] - capaact[capaact.length - 2][0][gat]) * (-1) * err[0][0];
+                double pol = 2 * (1.0 / 2.0) * (y[0][1] - capaact[capaact.length - 2][0][gat]) * (-1) * err[0][1];
+
+                double bugx = pio * cusito[1][0][0];
+                double g = pol * cusito[1][1][0];
+                double polill = bugx + g;
+                double[][] poli = MatJa.mulTiGran(capaact[0], (MatJa.restonVect(MatJa.ingresEnt(capaact[0], 1), capaact[0])));
+                // MatJa.impMat(poli);
+                double pico = yugo[0][0][0];
+                double kuma = polill * poli[0][0] * pico;
+                //MatJa.impMat(capaact[0]);
+                //aqui usamos w por que nesecitamos contaminar la memoria pero
+                //cuando nesecitemos una copia de la varible tendremos que recurrir a memoria fantasma
+                double li = w[0][gat][oli] - (ratio * kuma);
+                System.out.println(li);
+                sopas++;
+            }
+        }
         //MatJa.impMat( h[1]);
         //MatJa.impMat(h);
         //double[][] poli=MatJa.SumVectno(h,b);
