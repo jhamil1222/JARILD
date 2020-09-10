@@ -25,10 +25,15 @@ public class Main {
         //nota seguir de serca x que tuene una contaminacion de meoria mouy importante
         double[][][] yugo = MatJa.memoriaFantasma(new double[][][]{x});
         double[][] b = {{0.35, 0.60,0.8}};
-        double[][] y = {{0.01, 0.99,0.9}};
+        double[][] y = {{0.01, 0.99,0.9,0.8}};
         /*Verificar que esta parte sea viable por varias razones estoy hablando de h
          *
          * */
+        int numeroNeur=2;
+        int numeroCon=y[0].length;
+        b=randMat.random(1,numeroNeur,-1,1,false);
+        //mejorar este lado
+        w=new double[][][]{randMat.random(numeroCon,numeroNeur,-1,1,false),randMat.random(numeroCon,numeroNeur,-1,1,false)};
         cusito = MatJa.memoriaFantasma(w);
 
         double ratio = 0.5;
@@ -39,6 +44,7 @@ public class Main {
         y la
         variable salidas tiene como resultado las salidas neuronales
          */
+
         for (int ge = 0; ge < 10000; ge++) {
         for (int gato = 0; gato < w.length; gato++) {
             x = MatJa.SumVectno(MatJa.result(x, MatJa.matTi(w[gato])), b[0][gato]);
@@ -113,11 +119,9 @@ public class Main {
             /*aqui evaluaremos las capas ocultas pero eso si hay que modificar algunas cosas ya que estamos trabajando con
              *las demas capas restantes y en este caso ya no habria que tomar solo una capa
              */
-            sopas = 0;
 
             for (int gat = 0; gat < capaact[1][0].length; gat++) {
-
-                for (oli = 0; oli < w[gat][0].length; oli++) {
+                for (oli = 0; oli < w[0][gat].length; oli++) {
                     //backpropagetion capas ocultas
                     pio = 2 * (1.0 / 2.0) * (y[0][0] - capaact[capaact.length - 2][0][gat]) * (-1) * err[0][0];
                     pol = 2 * (1.0 / 2.0) * (y[0][1] - capaact[capaact.length - 2][0][gat]) * (-1) * err[0][1];
