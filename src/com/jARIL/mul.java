@@ -658,7 +658,7 @@ public static double [][]ingresEnt(double [] []prim,double numero){
     public static double[][] restonVect(double[][] prim,double[][]seg){
         int numi=0,gato=0;
         double[][]jaula=new double[seg.length][seg[0].length];
-        for(double [] paso:prim) {
+        for(double [] paso:prim ) {
             numi=0;
             for (double ga : paso) {
                 jaula[gato][numi] = ga - seg[gato][numi];
@@ -714,5 +714,21 @@ public static double [][]ingresEnt(double [] []prim,double numero){
 
         }
         return polilla;
+    }
+    //me di cuenta de algo muy importante y que da problemas al evaluar el sesgo
+    public static double [][]SumaSesgada(double [][] gato,double[] sesgo){
+        double [][]matr=new double[gato.length][gato[0].length];
+        int polio=0;
+        int para=0;
+        for(double []paradox:gato){
+            para=0;
+            for(double poli:paradox){
+                matr[polio][para]=sesgo[para]+poli;
+
+                para++;
+            }
+            polio++;
+        }
+        return  matr;
     }
 }
