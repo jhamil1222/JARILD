@@ -21,13 +21,34 @@ public class mul{
     /*una nota mia si tienes problemas con las matrices por favor solo establecelas de la siguiente forma{{}} es para
     * mantener una buena sintaxis pos data solo funcionara con doubles [][] pero ponet creativo un ejemplo {{1,2}}*{{0,1},{1,2}}*/
     public static double [][]result(double[][] prim,double [][] sec){
+
         int columnas =prim.length, filas=sec[0].length,gato= sec.length;
         /*System.out.println(columnas);*/
         double [][]resultado=new double [columnas][filas];
+        boolean ejecuto=true;
+        int caida=0,cola=0;
+        double pl=0;
+
+        if(prim.length>sec.length|(prim.length==sec.length&prim.length!=sec[0].length)){
+            resultado=new double [1][columnas];
+            cola=0;
+            for(double[] pio:prim ){
+                caida=0;
+                for (double polu:pio){
+                    pl+=prim[cola][caida]*sec[0][caida];
+                    caida++;
+                }
+                resultado[0][cola]=pl;
+                cola++;
+            }
+            ejecuto=false;
+        }
+        if(ejecuto){
         int i=0,j=0;
         //solo una fila
         int cal=0,cil=0;
         double pol=0;
+
         while(j<columnas){
             i=0;
             while(i<filas){
@@ -46,9 +67,9 @@ public class mul{
                 System.out.println(j+"gatito"+i);*/
                 i++;
             }j++;
-        }
+        }}
         resulto=resultado;
-    return resultado;
+        return resultado;
     }
 
     public static double[][] result(double solo, double [] matriz ){
@@ -522,11 +543,22 @@ class inclusion extends unos
         for(double [] paso:prim) {
             numi=0;
             for (double ga : paso) {
+                //este problema fue arreglado correctamente con 3 lineas las de abajo
+                //este problema solo funciona si la prim es lineal si es matricial susceden muchos roblemas
+                if(numi==seg[0].length){
+                numi=seg[0].length-1;
+                }
+
                 jaula[gato][numi] = Math.pow(ga,((negaExp)?-1*seg[gato][numi]:seg[gato][numi]));
 
+
                 numi++;
+
             }
+
             gato++;
+
+
         }
         return jaula;
     }
@@ -660,7 +692,12 @@ public static double [][]ingresEnt(double [] []prim,double numero){
         double[][]jaula=new double[seg.length][seg[0].length];
         for(double [] paso:prim ) {
             numi=0;
+
             for (double ga : paso) {
+                /*revisar este if da problemas por si un bug de informacion*/
+                if(numi==seg.length){
+                    numi=seg.length-1;
+                }
                 jaula[gato][numi] = ga - seg[gato][numi];
 
                 numi++;
@@ -701,10 +738,13 @@ public static double [][]ingresEnt(double [] []prim,double numero){
         double[][][] polilla = new double[errore.length][errore[0].length][errore[0][0].length];
         for (double[][] poli : errore) {
             pol=0;
+
             for (double[] pu : poli) {
                 gato=0;
+
                 for (double pis : pu) {
                     polilla[pio][pol][gato]=pis;
+
                     gato++;
                 }
                 pol++;
