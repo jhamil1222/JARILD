@@ -10,14 +10,16 @@ public class RedNeur {
      * @autor jhamil
      * @version 0.1-Beta
      * **/
-    private double[][] pesos;
-    private double[][] umbral;
-    private String funcionA;
+    public double[][] pesos;
+    public double[][] umbral;
+    public String funcionA;
     /*primero que nada inicializaremos la neurona con valores aleatorios para ello neurna
     *como tenemos un cierto numero de conexiones entonces pondre varibles para las conexiones como tambien
     * la funcion inicializara valores aleatorios*/
     /*para evitar problemas con la inicializacion del azar osea un mismo valor usare un valor aparte*/
-    public RedNeur neurna(int numeroNeur, int numeroCon, Random pio, String funcionA){
+    public RedNeur neurna(int numeroNeur, int numeroCon, String funcionA){
+        pesos=new double[1][1];
+        umbral=new double[1][1];
     //casi siempre el valor de las conexiones por neurona biene dadopor el area de la matriz que manejaremos
         pesos=MatJa.random(numeroNeur,numeroCon,-1,1);
         //como el umbral biene dado por neurona entonces daremos un paremotro solo por neurona
@@ -27,43 +29,45 @@ public class RedNeur {
 
 
         this.funcionA=funcionA;
+        return this;
 
-        return null;
     }
 
 }
 class capita{
     //lo estableci a un array list por la comodidad pero se puede haber hecho una matriz del objeto
-    private ArrayList<RedNeur> polilla=new ArrayList<RedNeur>();
-    public ArrayList<RedNeur> capa(int []topo, String act ,RedNeur poli)
+
+    public ArrayList<RedNeur> capa(int []topo, String act)
     {
+        RedNeur[] poli=new RedNeur[topo.length];
+        ArrayList <RedNeur> polilla= new ArrayList<>();
+
 
         int nu=0;
-        double[][]z;
 
-        while(nu<topo.length-1){
-            polilla.add(poli.neurna(topo[nu],topo[nu+1],new SecureRandom(),act));
+        while(nu<topo.length){
+            //nota mental no olvidarse inicialisar nueva memoria con la que se trabaja ya que
+            //hacerlo directo da problemas o bugs
+            poli[nu]=new RedNeur();
+            polilla.add(nu,poli[nu].neurna(topo[nu],topo[(nu==topo.length-1)?nu:nu+1],act));
+
             nu++;
         }
+
+
       return polilla;
     }
 
 }
 class proceso
 {
-    private double[][]z;
-    private ArrayList <RedNeur> perro;
-    public ArrayList<RedNeur> train(int [] topo, String []act, double [][]x ){
-        //pase adelante
-        //ablemos de esta operacion como es una capa tendremos lo siguiente z de la capa y de la
-        //entrada
-        capita per=new capita();
-        perro=per.capa(topo,"sigm",new RedNeur());
-        double z[][];
-        int gatito=0;
-        while(gatito<x.length){
-            z=perro.get()
-        }
+   public void train(int[] topo,String act,double [][]x){
+       capita poli=new capita();
+        //el proceso es el siguiente las neuronas bienen dadas el numero de neuronas que existen en la siguiente capa
+       //tendras un numero de conexiones lo otro es que tendras que definir el numero de conexiones
+       //en torno al numero de neuronas
+       double[][]z=MatJa.SumVect(MatJa.result(poli.capa(topo,act).get(0).pesos,x),MatJa.matTi(poli.capa(topo,"sigm").get(0).umbral));
 
-    }
+       MatJa.impMat(z);
+   }
 }

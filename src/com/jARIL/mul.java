@@ -29,45 +29,77 @@ public class mul{
         int caida=0,cola=0;
         double pl=0;
 
-        if(prim.length>sec.length|(prim.length==sec.length&prim.length!=sec[0].length)){
-            resultado=new double [1][columnas];
-            cola=0;
-            for(double[] pio:prim ){
-                caida=0;
-                for (double polu:pio){
-                    pl+=prim[cola][caida]*sec[0][caida];
-                    caida++;
-                }
-                resultado[0][cola]=pl;
-                cola++;
-            }
-            ejecuto=false;
+        int puerquito=0;
+        int pollito=0;
+        if(prim[0].length!=sec.length&(sec.length>prim[0].length||prim[0].length>sec.length)&sec.length!=1){
+            throw new ArrayIndexOutOfBoundsException("error por favor modifica una de tus doubles que ingresaste");
+
         }
-        if(ejecuto){
-        int i=0,j=0;
-        //solo una fila
-        int cal=0,cil=0;
-        double pol=0;
+        if(sec.length!=1&sec.length==prim.length|prim[0].length== sec.length) {
+            int i = 0, j = 0;
+            //solo una fila
+            int cal = 0, cil = 0;
+            double pol = 0;
 
-        while(j<columnas){
-            i=0;
-            while(i<filas){
-                cal=0;
-                while(cal<gato){
-                    //se multiplica por el numero de filas y suma pero solo un resultado matricial
 
-                    pol+=prim[j][cal]*sec[cal][i];
-                    cal++;
+            while(j<columnas){
+                i=0;
+                while(i<filas){
+                    cal=0;
+                    while(cal<gato){
+                        //se multiplica por el numero de filas y suma pero solo un resultado matricial
 
-                }
-                //se pone un resultado de la suma y multplicacion
-                resultado[j][i]=pol;
-                pol=0;
+                        pol+=prim[j][cal]*sec[cal][i];
+                        cal++;
+
+                    }
+                    //se pone un resultado de la suma y multplicacion
+                    resultado[j][i]=pol;
+
+                    pol=0;
                 /*System.out.println(resultado[j][i]);
                 System.out.println(j+"gatito"+i);*/
-                i++;
-            }j++;
-        }}
+                    i++;
+                }
+                j++;
+            }}
+
+        else {
+
+            int pan=0;
+            double[][]retado=new double[sec.length][prim.length];
+
+            if (sec.length == 1) {
+                for (double[] pio : prim) {
+                    
+                    caida=0;
+					
+                    for (double polu : pio) {
+                        pl += polu*sec[0][caida];
+					
+                        caida++;
+						
+                    }
+					
+					System.out.println(cola);
+                    retado[0][cola] = pl;
+					
+					pl=0;
+					cola++;
+					
+                  pan++;
+
+                }
+                return retado;
+            }
+
+
+        }
+        //arregle esta clase para una mejora en el caluclo neuronal
+
+
+
+
         resulto=resultado;
         return resultado;
     }
@@ -581,6 +613,10 @@ class MatJa extends inclusion{
 public static double[][] SumVect(double[][] prim,double[][]seg){
     int numi=0,gato=0;
     double[][]jaula=new double[seg.length][seg[0].length];
+    boolean sopita=true;
+
+    if(seg.length!=1&prim.length!=1||seg.length==prim.length){
+
     for(double [] paso:prim) {
         numi=0;
         for (double ga : paso) {
@@ -590,6 +626,40 @@ public static double[][] SumVect(double[][] prim,double[][]seg){
         }
         gato++;
     }
+
+    }
+    else{
+        int puerquito=0;
+        int pollito=0;
+        double[][]resultado=new double[prim.length][seg[0].length];
+     if(seg.length==1){
+         for(double[]poli:prim){
+             pollito=0;
+             for(double pio:poli){
+                 resultado[puerquito][pollito]=seg[0][pollito]+pio;
+             pollito++;
+             }
+             puerquito++;
+         }
+         MatJa.impMat(resultado);
+         return resultado;
+
+     }
+        resultado=new double[seg.length][prim[0].length];
+     if(prim.length==1){
+         for(double[]poli:seg){
+             pollito=0;
+             for(double pio:poli){
+                 resultado[puerquito][pollito]=prim[0][pollito]+pio;
+                 pollito++;
+             }
+             puerquito++;
+         }
+         MatJa.impMat(resultado);
+        return resultado;
+     }
+    }
+
     return jaula;
 }
     /*este es un error grabe pero no se tomara en cuenta a vectorno */
