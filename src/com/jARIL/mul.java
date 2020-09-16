@@ -81,7 +81,7 @@ public class mul{
 						
                     }
 					
-					System.out.println(cola);
+
                     retado[0][cola] = pl;
 					
 					pl=0;
@@ -613,13 +613,40 @@ class MatJa extends inclusion{
 public static double[][] SumVect(double[][] prim,double[][]seg){
     int numi=0,gato=0;
     double[][]jaula=new double[seg.length][seg[0].length];
-    boolean sopita=true;
+    boolean sota=true;
+    MatJa.impMat(seg);
+    MatJa.impMat(prim);
+    double[][] se;
+    if(seg[0].length==1|| prim[0].length==1&&seg.length==1|prim.length==1){
+        jaula=new double[prim.length][seg[0].length];
+        se=seg;
+        seg=prim;
+        if(seg[0].length==1){
+            jaula=new double[prim.length][seg.length];
+            se=prim;
+            seg=se;
+        }
 
-    if(seg.length!=1&prim.length!=1||seg.length==prim.length){
+
+        for(double[]poli:se){
+            numi=0;
+            for(double pio:poli){
+                jaula[gato][numi]=seg[0][numi]+pio;
+                numi++;
+            }
+            gato++;
+        }
+        MatJa.impMat(jaula);
+        sota=false;
+        return jaula;
+
+    }
+    if(seg.length!=1&prim.length!=1||seg.length==prim.length&&sota){
 
     for(double [] paso:prim) {
         numi=0;
         for (double ga : paso) {
+
             jaula[gato][numi] = ga + seg[gato][numi];
 
             numi++;

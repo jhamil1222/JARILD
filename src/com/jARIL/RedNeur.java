@@ -66,7 +66,8 @@ class proceso
         //el proceso es el siguiente las neuronas bienen dadas el numero de neuronas que existen en la siguiente capa
        //tendras un numero de conexiones lo otro es que tendras que definir el numero de conexiones
        //en torno al numero de neuronas
-       double[][]z=MatJa.SumVect(MatJa.result(poli.capa(topo,act).get(0).pesos,x),MatJa.matTi(poli.capa(topo,"sigm").get(0).umbral));
+
+       double[][]z=MatJa.SumVect(MatJa.result(poli.capa(topo,act).get(3).pesos,x),MatJa.matTi(poli.capa(topo,"sigm").get(3).umbral));
 
        MatJa.impMat(z);
    }
