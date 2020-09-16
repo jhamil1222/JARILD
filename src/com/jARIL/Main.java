@@ -6,7 +6,7 @@ import java.util.Random;
 public class Main {
 
     public static void main(String[] args) {
-    proceso pio=new proceso();
+    proceso pi=new proceso();
     //nota no podras establecer neuronas de entrada mayores a las salidas
     //pio.train(new int[]{5,9,1},"sigm",new double[][]{{1,2,3}});
         double[][]po={{1,1,1,1}};
