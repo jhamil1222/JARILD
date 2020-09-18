@@ -22,7 +22,7 @@ public class mul{
     * mantener una buena sintaxis pos data solo funcionara con doubles [][] pero ponet creativo un ejemplo {{1,2}}*{{0,1},{1,2}}*/
     public static double [][]result(double[][] prim,double [][] sec){
 
-        int columnas =prim.length, filas=sec[0].length,gato= sec.length;
+        int columnas =prim.length, filas=sec[0].length,gato= prim[0].length;
         /*System.out.println(columnas);*/
         double [][]resultado=new double [columnas][filas];
         boolean ejecuto=true;
@@ -31,15 +31,29 @@ public class mul{
 
         int puerquito=0;
         int pollito=0;
-        if(prim[0].length!=sec.length&(sec.length>prim[0].length||prim[0].length>sec.length)&sec.length!=1){
-            throw new ArrayIndexOutOfBoundsException("error por favor modifica una de tus doubles que ingresaste");
+        //revisar hay errores muy grandes aqui en esta funcion
+        if(prim[0].length!=sec.length&(prim.length!=1|prim[0].length!=sec[0].length)){
+            System.out.println("error por favor corrige uno de estos");
+
+            System.out.println("primero");
+            MatJa.impMat(prim);
+            System.out.println("segundo ");
+            MatJa.impMat(sec);
+
+            System.out.println("error por favor modifica una de tus doubles que ingresaste");
+
+            throw new ArrayIndexOutOfBoundsException("error por favor corrige prim o sec");
+
 
         }
-        if(sec.length!=1&sec.length==prim.length|prim[0].length== sec.length) {
+        if((prim.length!=1&((prim[0].length+prim.length== sec.length+sec[0].length)|sec[0].length==prim.length))||prim[0].length==sec.length) {
+
+
             int i = 0, j = 0;
             //solo una fila
             int cal = 0, cil = 0;
             double pol = 0;
+
 
 
             while(j<columnas){
@@ -50,6 +64,7 @@ public class mul{
                         //se multiplica por el numero de filas y suma pero solo un resultado matricial
 
                         pol+=prim[j][cal]*sec[cal][i];
+
                         cal++;
 
                     }
@@ -67,34 +82,94 @@ public class mul{
         else {
 
             int pan=0;
-            double[][]retado=new double[sec.length][prim.length];
 
-            if (sec.length == 1) {
+
+            if(sec[0].length!=prim[0].length&prim[0].length!=1){
+                System.out.println("error por favor corrige uno de estos");
+                System.out.println("error tipo 2");
+                System.out.println("primero");
+                MatJa.impMat(prim);
+                System.out.println("segundo ");
+                MatJa.impMat(sec);
+                System.out.println("error");
+                throw new ArrayIndexOutOfBoundsException("error por favor corrige prim o sec");
+
+
+            }
+
+            if (sec.length == 1&sec[0].length==prim[0].length) {
+                double[][]retado=new double[1][prim.length];
                 for (double[] pio : prim) {
-                    
+
                     caida=0;
-					
+
                     for (double polu : pio) {
                         pl += polu*sec[0][caida];
-					
-                        caida++;
-						
+                        if(caida<sec[0].length) {
+                            caida++;
+
+
+                        }
+
                     }
-					
+
 
                     retado[0][cola] = pl;
-					
-					pl=0;
-					cola++;
-					
-                  pan++;
+                   cola++;
+                    pl=0;
+
+
+                    pan++;
 
                 }
+
+
                 return retado;
+
+        }
+            if(prim[0].length==1&sec.length==1){
+                System.out.println("error");
+                double[][]retado=new double[1][sec[0].length];
+                for (double[] pio :sec ) {
+
+                    caida=0;
+
+                    for (double polu : pio) {
+                        pl = prim[0][0]*sec[0][caida];
+
+                        retado[0][cola] = pl;
+                        caida++;
+                        cola++;
+
+                    }
+
+
+                    pan++;
+
+                }
+
+
+                return retado;
+
+            }
+            else{
+                System.out.println("error por favor corrige uno de estos");
+                System.out.println("primero");
+                MatJa.impMat(prim);
+                System.out.println("segundo ");
+                MatJa.impMat(sec);
+                System.out.println("error");
+                throw new ArrayIndexOutOfBoundsException("error por favor corrige prim o sec");
+
             }
 
 
+
+
+
+
         }
+
         //arregle esta clase para una mejora en el caluclo neuronal
 
 
@@ -208,6 +283,7 @@ public class mul{
                 System.out.print("     [");
             }
             corre++;
+
         }
 
     }
@@ -614,29 +690,31 @@ public static double[][] SumVect(double[][] prim,double[][]seg){
     int numi=0,gato=0;
     double[][]jaula=new double[seg.length][seg[0].length];
     boolean sota=true;
-    MatJa.impMat(seg);
-    MatJa.impMat(prim);
+   
     double[][] se;
     if(seg[0].length==1|| prim[0].length==1&&seg.length==1|prim.length==1){
-        jaula=new double[prim.length][seg[0].length];
+        jaula=new double[prim.length][seg.length];
         se=seg;
         seg=prim;
-        if(seg[0].length==1){
-            jaula=new double[prim.length][seg.length];
-            se=prim;
-            seg=se;
+        if(prim[0].length==1){
+			seg=se;
+			se=prim;
+            
         }
+		jaula=new double[seg.length][seg[0].length];
+		
+		
 
 
-        for(double[]poli:se){
+        for(double[]poli:seg){
             numi=0;
             for(double pio:poli){
-                jaula[gato][numi]=seg[0][numi]+pio;
+                jaula[gato][numi]=se[0][0]+pio;
                 numi++;
             }
             gato++;
         }
-        MatJa.impMat(jaula);
+        
         sota=false;
         return jaula;
 
@@ -658,17 +736,23 @@ public static double[][] SumVect(double[][] prim,double[][]seg){
     else{
         int puerquito=0;
         int pollito=0;
-        double[][]resultado=new double[prim.length][seg[0].length];
+        int puito=0;
+        double[][]resultado=new double[prim.length][prim[0].length];
      if(seg.length==1){
          for(double[]poli:prim){
              pollito=0;
+             puito=0;
+
              for(double pio:poli){
-                 resultado[puerquito][pollito]=seg[0][pollito]+pio;
+                 resultado[puerquito][pollito]=seg[0][puito]+pio;
+                 if(puito<seg[0].length-1){
+                     puito++;
+                 }
              pollito++;
              }
              puerquito++;
          }
-         MatJa.impMat(resultado);
+         
          return resultado;
 
      }
@@ -682,7 +766,7 @@ public static double[][] SumVect(double[][] prim,double[][]seg){
              }
              puerquito++;
          }
-         MatJa.impMat(resultado);
+
         return resultado;
      }
     }
@@ -737,22 +821,21 @@ public static double[][] SumVect(double[][] prim,double[][]seg){
         }
         return jaula;
     }
-public static double [][]ingresEnt(double [] []prim,double numero){
-    int numi=0,gato=0;
-    double[][]jaula=new double[prim.length][prim[0].length];
-    for(double [] paso:prim) {
-        numi=0;
-        for (double ga : paso) {
-            jaula[gato][numi] = numero;
+    public static double [][]ingresEnt(double [] []prim,double numero){
+        int numi=0,gato=0;
+        double[][]jaula=new double[prim.length][prim[0].length];
+        for(double [] paso:prim) {
+            numi=0;
+            for (double ga : paso) {
+                jaula[gato][numi] = numero;
 
-            numi++;
+                numi++;
+            }
+            gato++;
         }
-        gato++;
+        return jaula;
+
     }
-    return jaula;
-
-}
-
     public static double [][]ingresEnt(int fila, int columna,double numero){
         int numi=0,gato=0;
         double[][]jaula=new double[fila][columna];
@@ -768,6 +851,7 @@ public static double [][]ingresEnt(double [] []prim,double numero){
         return jaula;
 
     }
+
 
     public static double[][] MAX(double[][] prim,double[][] seg){
         int numi=0,gato=0;
@@ -787,20 +871,88 @@ public static double [][]ingresEnt(double [] []prim,double numero){
     public static double[][] restonVect(double[][] prim,double[][]seg){
         int numi=0,gato=0;
         double[][]jaula=new double[seg.length][seg[0].length];
-        for(double [] paso:prim ) {
-            numi=0;
+        boolean sota=true;
 
-            for (double ga : paso) {
-                /*revisar este if da problemas por si un bug de informacion*/
-                if(numi==seg.length){
-                    numi=seg.length-1;
-                }
-                jaula[gato][numi] = ga - seg[gato][numi];
+        double[][] se;
+        if(seg[0].length==1|| prim[0].length==1&&seg.length==1|prim.length==1){
+            jaula=new double[prim.length][seg.length];
+            se=seg;
+            seg=prim;
+            if(prim[0].length==1){
+                seg=se;
+                se=prim;
 
-                numi++;
             }
-            gato++;
+            jaula=new double[seg.length][seg[0].length];
+
+
+
+
+            for(double[]poli:seg){
+                numi=0;
+                for(double pio:poli){
+                    jaula[gato][numi]=se[0][0]-pio;
+                    numi++;
+                }
+                gato++;
+            }
+
+            sota=false;
+            return jaula;
+
         }
+        if(seg.length!=1&prim.length!=1||seg.length==prim.length&&sota){
+
+            for(double [] paso:prim) {
+                numi=0;
+                for (double ga : paso) {
+
+                    jaula[gato][numi] = ga - seg[gato][numi];
+
+                    numi++;
+                }
+                gato++;
+            }
+
+        }
+        else{
+            int puerquito=0;
+            int pollito=0;
+            int puito=0;
+            double[][]resultado=new double[prim.length][prim[0].length];
+            if(seg.length==1){
+                for(double[]poli:prim){
+                    pollito=0;
+                    puito=0;
+
+                    for(double pio:poli){
+                        resultado[puerquito][pollito]=seg[0][puito]-pio;
+                        if(puito<seg[0].length-1){
+                            puito++;
+                        }
+                        pollito++;
+                    }
+                    puerquito++;
+                }
+
+                return resultado;
+
+            }
+            resultado=new double[seg.length][prim[0].length];
+            if(prim.length==1){
+                for(double[]poli:seg){
+                    pollito=0;
+                    for(double pio:poli){
+                        resultado[puerquito][pollito]=prim[0][pollito]+pio;
+                        pollito++;
+                    }
+                    puerquito++;
+                }
+
+                return resultado;
+            }
+        }
+
         return jaula;
     }
     public static double[][] E(int filas,int columnas){
@@ -851,6 +1003,45 @@ public static double [][]ingresEnt(double [] []prim,double numero){
 
         }
         return polilla;
+    }
+    public static double [][]inse1(double [] []prim,double numero){
+        int numi=0,gato=0;
+        double pel=0;
+        double[][]jaula=new double[prim.length][prim[0].length+1];
+        int py=1;
+        for(double [] paso:jaula) {
+            numi=0;
+            py=0;
+            for (double ga : paso) {
+                if(numi==0){
+                    jaula[gato][numi] = numero;
+                }
+                else {
+                    jaula[gato][numi] = prim[gato][py-1];
+
+                }
+                py++;
+                numi++;
+            }
+
+            gato++;
+        }
+        return jaula;
+
+    }
+    public static double[][] x(double[][] prim,double[][]seg){
+        int numi=0,gato=0;
+        double[][]jaula=new double[seg.length][seg[0].length];
+        for(double [] paso:prim) {
+            numi=0;
+            for (double ga : paso) {
+                jaula[gato][numi] = ga * seg[gato][numi];
+
+                numi++;
+            }
+            gato++;
+        }
+        return jaula;
     }
     //me di cuenta de algo muy importante y que da problemas al evaluar el sesgo
     public static double [][]SumaSesgada(double [][] gato,double[] sesgo){

@@ -17,13 +17,13 @@ public class RedNeur {
     *como tenemos un cierto numero de conexiones entonces pondre varibles para las conexiones como tambien
     * la funcion inicializara valores aleatorios*/
     /*para evitar problemas con la inicializacion del azar osea un mismo valor usare un valor aparte*/
-    public RedNeur neurna(int numeroNeur, int numeroCon, String funcionA){
+    public RedNeur neurna(int numeroCon, int numeroNeur, String funcionA){
         pesos=new double[1][1];
         umbral=new double[1][1];
     //casi siempre el valor de las conexiones por neurona biene dadopor el area de la matriz que manejaremos
-        pesos=MatJa.random(numeroNeur,numeroCon,-1,1);
+        pesos=MatJa.random(numeroCon,numeroNeur,-1,1);
         //como el umbral biene dado por neurona entonces daremos un paremotro solo por neurona
-        umbral=MatJa.random(numeroNeur,1,-1,1);
+        umbral=MatJa.random(1,numeroNeur,-1,1);
         //MatJa.impMat(pesos);
 
 
@@ -45,14 +45,18 @@ class capita{
 
         int nu=0;
 
-        while(nu<topo.length){
+        while(nu<topo.length-1){
+
             //nota mental no olvidarse inicialisar nueva memoria con la que se trabaja ya que
             //hacerlo directo da problemas o bugs
             poli[nu]=new RedNeur();
-            polilla.add(nu,poli[nu].neurna(topo[nu],topo[(nu==topo.length-1)?nu:nu+1],act));
+            polilla.add(poli[nu].neurna(topo[nu],topo[nu+1],act));
+
+
 
             nu++;
         }
+
 
 
       return polilla;
@@ -63,12 +67,31 @@ class proceso
 {
    public void train(int[] topo,String act,double [][]x){
        capita poli=new capita();
+       double [][]a=new double[topo[topo.length-1]][topo.length];
         //el proceso es el siguiente las neuronas bienen dadas el numero de neuronas que existen en la siguiente capa
        //tendras un numero de conexiones lo otro es que tendras que definir el numero de conexiones
        //en torno al numero de neuronas
 
-       double[][]z=MatJa.SumVect(MatJa.result(poli.capa(topo,act).get(3).pesos,x),MatJa.matTi(poli.capa(topo,"sigm").get(3).umbral));
+       ArrayList<RedNeur> pil=poli.capa(topo,act);
+        ArrayList<double[][]> sigmoideaCap=new ArrayList<>();
+	   for(int pio=0; pio<topo.length-1; pio++){
 
-       MatJa.impMat(z);
+       double[][]z=MatJa.SumVect(MatJa.result(x,pil.get(pio).pesos),pil.get(pio).umbral);
+
+       a=funcion_Act.sigm(z)[0];
+
+       sigmoideaCap.add(a);
+           //MatJa.impMat(z);
+        //depues de depurar alrededor de 2 dias si se pudo corregir tanto result como red neur
+           //cualquier problema de claculo es culpa de MatJa.result corregir en depuracion
+
+	   x=a;
+
+
+       }
+
+	   MatJa.impMat(a);
+
+
    }
 }
