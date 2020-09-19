@@ -15,6 +15,8 @@ public class funcion_Act {
         //return new double []{1/(1+Math.pow(Math.E,-x)),x*(1-x)};
     }
     //relu la columna 0 esta definida como la funcion relu y su derivada en 1
+    //mejorar relu tiene problemas logicos muy grabes derivada todavia no probada solo se difiere de
+    //la funcion
     public static double [][] []relu(double[][] x){
         return new double[][][] {MatJa.MAX(MatJa.ingresEnt(x,0),x),MatJa.DIVect(MatJa.ingresEnt(x,1),MatJa.SumVect(MatJa.ingresEnt(x,1),MatJa.powVectM(MatJa.E(x.length, x[0].length),x,true)))};
         //return new double []{Math.max(0,x),1/(1+Math.pow(Math.E,-x))};
