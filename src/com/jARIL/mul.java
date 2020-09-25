@@ -622,6 +622,32 @@ class inclusion extends unos
         gato=gato/matriz.length;
         return gato;
     }
+    public static double[][] GranmediaVect(double[][]matriz){
+        /*el vector medio es la sumatoria del array y la divicion del numero de sus elementos
+         * gato=vector de tamaño l
+         * medio = sumatoria de los elementos de gato "/" o dividido numero de elementos de gato
+         * */
+        double gato=0;
+        double gat[][]=new double[1][matriz[0].length];
+        int buo=0;
+
+        for (int ul=0; ul<matriz.length; ul++){
+            for (int roli=0; roli<matriz[0].length; roli++){
+                gato=0;
+                for (int palis=0; palis<matriz.length; palis++){
+                    gato+=matriz[palis][roli];
+
+                }
+                gat[0][roli]=gato/matriz.length;
+
+            }
+        }
+
+
+
+        return gat;
+
+    }
 
     public static double[]restaVect (double []predic,double[] real){
         int numi=0;

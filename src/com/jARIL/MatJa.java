@@ -136,18 +136,78 @@ public class MatJa extends inclusion{
         return jaula;
     }
     public static double[][] mulTiGran(double[][] prim,double[][]seg){
-        int numi=0,gato=0;
-        double[][]jaula=new double[seg.length][seg[0].length];
-        for(double [] paso:prim) {
-            numi=0;
-            for (double ga : paso) {
-                jaula[gato][numi] = ga * seg[gato][numi];
+        double[][] pabl;
 
-                numi++;
+        if(((((prim[0].length==1&&prim.length==1)||(seg[0].length==1&&seg.length==1))|| prim[0].length==seg[0].length)&((prim.length<=1&seg.length>=1)||(seg.length<=1&prim.length>=1)))||(seg.length==prim.length&&seg[0].length==prim[0].length)){
+            if(seg.length>prim.length||seg[0].length>prim[0].length) {
+                pabl = new double[seg.length][seg[0].length];
             }
-            gato++;
+            else {
+                pabl = new double[prim.length][prim[0].length];
+            }
+            int conta=0;
+            int co=0;
+            int colus=0;
+            int pilo=0;
+            //error nuy grave revicion
+            int tamaño=prim[0].length,taman=prim.length;
+            if(prim.length==1||prim[0].length==1){
+
+                tamaño=seg[0].length;
+                taman=seg.length;
+            }
+
+            for(int conti=0; conti<taman;  conti++ ){
+                pilo=0;
+                colus=0;
+
+                for (int contu=0; contu< tamaño; contu++){
+                    //fue jodido si pero casi se logra
+                    if(prim.length==1&&prim[0].length==1){
+
+                        conta=0;
+                        pilo=0;
+                    }
+                    if(seg.length==1&& seg[0].length==1){
+                        co=0;
+                        colus=0;
+                    }
+                    if(prim.length==1){
+                        conta=0;
+                    }
+                    if(seg.length==1){
+                        co=0;
+                    }
+
+                    pabl[conti][contu]=prim[conta][pilo]*seg[co][colus];
+
+                    colus++;
+                    pilo++;
+                }
+                co++;
+                conta++;
+
+            }
+
+
+
+
+
         }
-        return jaula;
+        else{
+            System.out.println("error por favor corrige uno de estos");
+
+            System.out.println("primero");
+            MatJa.impMat(prim);
+            System.out.println("segundo ");
+            MatJa.impMat(seg);
+
+            System.out.println("error por favor modifica una de tus doubles que ingresaste");
+
+            throw new ArrayIndexOutOfBoundsException("error por favor corrige prim o sec");
+
+        }
+        return pabl;
     }
     public static double [][]ingresEnt(double [] []prim,double numero){
         int numi=0,gato=0;
@@ -196,92 +256,80 @@ public class MatJa extends inclusion{
         return jaula;
 
     }
+    //aqui restaurare restonVect
     public static double[][] restonVect(double[][] prim,double[][]seg){
-        int numi=0,gato=0;
-        double[][]jaula=new double[seg.length][seg[0].length];
-        boolean sota=true;
+        double[][] pabl;
 
-        double[][] se;
-        if(seg[0].length==1|| prim[0].length==1&&seg.length==1|prim.length==1){
-            jaula=new double[prim.length][seg.length];
-            se=seg;
-            seg=prim;
-            if(prim[0].length==1){
-                seg=se;
-                se=prim;
+        if(((((prim[0].length==1&&prim.length==1)||(seg[0].length==1&&seg.length==1))|| prim[0].length==seg[0].length)&((prim.length<=1&seg.length>=1)||(seg.length<=1&prim.length>=1)))||(seg.length==prim.length&&seg[0].length==prim[0].length)){
+           if(seg.length>prim.length||seg[0].length>prim[0].length) {
+               pabl = new double[seg.length][seg[0].length];
+           }
+           else {
+               pabl = new double[prim.length][prim[0].length];
+           }
+        int conta=0;
+           int co=0;
+           int colus=0;
+           int pilo=0;
+        //error nuy grave revicion
+            int tamaño=prim[0].length,taman=prim.length;
+            if(prim.length==1||prim[0].length==1){
 
+                tamaño=seg[0].length;
+                taman=seg.length;
             }
-            jaula=new double[seg.length][seg[0].length];
 
+        for(int conti=0; conti<taman;  conti++ ){
+            pilo=0;
+            colus=0;
 
+            for (int contu=0; contu< tamaño; contu++){
+                //fue jodido si pero casi se logra
+                if(prim.length==1&&prim[0].length==1){
 
-
-            for(double[]poli:seg){
-                numi=0;
-                for(double pio:poli){
-                    jaula[gato][numi]=se[0][0]-pio;
-                    numi++;
+                    conta=0;
+                    pilo=0;
                 }
-                gato++;
-            }
+                if(seg.length==1&& seg[0].length==1){
+                    co=0;
+                    colus=0;
+                }
+                if(prim.length==1){
+                    conta=0;
+                }
+                if(seg.length==1){
+                    co=0;
+                }
 
-            sota=false;
-            return jaula;
+                pabl[conti][contu]=prim[conta][pilo]-seg[co][colus];
+
+                colus++;
+                pilo++;
+            }
+            co++;
+            conta++;
 
         }
-        if(seg.length!=1&prim.length!=1||seg.length==prim.length&&sota){
 
-            for(double [] paso:prim) {
-                numi=0;
-                for (double ga : paso) {
 
-                    jaula[gato][numi] = ga - seg[gato][numi];
 
-                    numi++;
-                }
-                gato++;
-            }
+
 
         }
         else{
-            int puerquito=0;
-            int pollito=0;
-            int puito=0;
-            double[][]resultado=new double[prim.length][prim[0].length];
-            if(seg.length==1){
-                for(double[]poli:prim){
-                    pollito=0;
-                    puito=0;
+            System.out.println("error por favor corrige uno de estos");
 
-                    for(double pio:poli){
-                        resultado[puerquito][pollito]=seg[0][puito]-pio;
-                        if(puito<seg[0].length-1){
-                            puito++;
-                        }
-                        pollito++;
-                    }
-                    puerquito++;
-                }
+            System.out.println("primero");
+            MatJa.impMat(prim);
+            System.out.println("segundo ");
+            MatJa.impMat(seg);
 
-                return resultado;
+            System.out.println("error por favor modifica una de tus doubles que ingresaste");
 
-            }
-            resultado=new double[seg.length][prim[0].length];
-            if(prim.length==1){
-                for(double[]poli:seg){
-                    pollito=0;
-                    for(double pio:poli){
-                        resultado[puerquito][pollito]=prim[0][pollito]+pio;
-                        pollito++;
-                    }
-                    puerquito++;
-                }
+            throw new ArrayIndexOutOfBoundsException("error por favor corrige prim o sec");
 
-                return resultado;
-            }
         }
-
-        return jaula;
+        return pabl;
     }
     public static double[][] E(int filas,int columnas){
         int columna=0;
@@ -332,6 +380,28 @@ public class MatJa extends inclusion{
         }
         return polilla;
     }
+    public static double [][]memoriaFantasma(double[][] errore) {
+        int gato = 0;
+        int pol = 0;
+        double[][] polilla = new double[errore.length][errore[0].length];
+
+
+            for (double[] pu : errore) {
+                gato=0;
+
+                for (double pis : pu) {
+                    polilla[pol][gato]=pis;
+
+                    gato++;
+                }
+                pol++;
+            }
+
+
+
+
+        return polilla;
+    }
     public static double [][]inse1(double [] []prim,double numero){
         int numi=0,gato=0;
         double pel=0;
@@ -358,18 +428,78 @@ public class MatJa extends inclusion{
 
     }
     public static double[][] x(double[][] prim,double[][]seg){
-        int numi=0,gato=0;
-        double[][]jaula=new double[seg.length][seg[0].length];
-        for(double [] paso:prim) {
-            numi=0;
-            for (double ga : paso) {
-                jaula[gato][numi] = ga * seg[gato][numi];
+        double[][] pabl;
 
-                numi++;
+        if(((((prim[0].length==1&&prim.length==1)||(seg[0].length==1&&seg.length==1))|| prim[0].length==seg[0].length)&((prim.length<=1&seg.length>=1)||(seg.length<=1&prim.length>=1)))||(seg.length==prim.length&&seg[0].length==prim[0].length)){
+            if(seg.length>prim.length||seg[0].length>prim[0].length) {
+                pabl = new double[seg.length][seg[0].length];
             }
-            gato++;
+            else {
+                pabl = new double[prim.length][prim[0].length];
+            }
+            int conta=0;
+            int co=0;
+            int colus=0;
+            int pilo=0;
+            //error nuy grave revicion
+            int tamaño=prim[0].length,taman=prim.length;
+            if(prim.length==1||prim[0].length==1){
+
+                tamaño=seg[0].length;
+                taman=seg.length;
+            }
+
+            for(int conti=0; conti<taman;  conti++ ){
+                pilo=0;
+                colus=0;
+
+                for (int contu=0; contu< tamaño; contu++){
+                    //fue jodido si pero casi se logra
+                    if(prim.length==1&&prim[0].length==1){
+
+                        conta=0;
+                        pilo=0;
+                    }
+                    if(seg.length==1&& seg[0].length==1){
+                        co=0;
+                        colus=0;
+                    }
+                    if(prim.length==1){
+                        conta=0;
+                    }
+                    if(seg.length==1){
+                        co=0;
+                    }
+
+                    pabl[conti][contu]=prim[conta][pilo]*seg[co][colus];
+
+                    colus++;
+                    pilo++;
+                }
+                co++;
+                conta++;
+
+            }
+
+
+
+
+
         }
-        return jaula;
+        else{
+            System.out.println("error por favor corrige uno de estos");
+
+            System.out.println("primero");
+            MatJa.impMat(prim);
+            System.out.println("segundo ");
+            MatJa.impMat(seg);
+
+            System.out.println("error por favor modifica una de tus doubles que ingresaste");
+
+            throw new ArrayIndexOutOfBoundsException("error por favor corrige prim o sec");
+
+        }
+        return pabl;
     }
     //me di cuenta de algo muy importante y que da problemas al evaluar el sesgo
     public static double [][]SumaSesgada(double [][] gato,double[] sesgo){
