@@ -32,7 +32,7 @@ public class mul{
         int puerquito=0;
         int pollito=0;
         //revisar hay errores muy grandes aqui en esta funcion
-        if(prim[0].length!=sec.length&(prim.length!=1|prim[0].length!=sec[0].length)){
+        if(prim[0].length!=sec[0].length&(prim.length!=1|prim[0].length!=1)){
             System.out.println("error por favor corrige uno de estos");
 
             System.out.println("primero");
