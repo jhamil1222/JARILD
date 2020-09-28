@@ -1,5 +1,4 @@
 package com.jARIL;
-import com.jARIL.*;
 
 import java.util.ArrayList;
 
@@ -20,7 +19,7 @@ public class proceso{
             for(int pio=0; pio<pil.size(); pio++){
 
                 double[][]z= MatJa.SumVect(MatJa.result(x,pil.get(pio).pesos),pil.get(pio).umbral);
-                /**aun experimental es switch de abajo falta mejorar relu y la capacidad de la red pero lo dejare como beta*/
+                /*aun experimental es switch de abajo falta mejorar relu y la capacidad de la red pero lo dejare como beta*/
                 switch(act[pio]){
                     case "sigm":
                         a= funcion_Act.sigm(z)[0];
