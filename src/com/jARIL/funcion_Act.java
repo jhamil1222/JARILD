@@ -30,7 +30,9 @@ class error {
         //error cuadratico medio
         //aqui use result por que puse una multiplicacion por un escalar
         double  cero=  MatJa.sumatoriaV(MatJa.result(0.5,MatJa.powVectM(MatJa.restonVect(Yp,Yr),MatJa.ingresEnt(Yp,2),false)));
+
         double [][] uno=MatJa.restonVect(Yp,Yr);
+        
         return new double[][][]{{{cero}},uno};
     }
 

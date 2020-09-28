@@ -271,10 +271,10 @@ public class MatJa extends inclusion{
            int co=0;
            int colus=0;
            int pilo=0;
-        //error nuy grave revicion
-            int tamaño=prim[0].length,taman=prim.length;
-            if(prim.length==1||prim[0].length==1){
 
+            int tamaño=prim[0].length,taman=prim.length;
+            if(prim.length==1&&prim[0].length==1){
+                System.out.println("me ejecuto");
                 tamaño=seg[0].length;
                 taman=seg.length;
             }

@@ -10,10 +10,14 @@ public class Main {
     //nota no podras establecer neuronas de entrada mayores a las salidas
         double[][]x=new double[][]{{1,1},{1,0},{1,0}};
 
-        double[][]r=new double[][]{{3,2,3}};
+        double[][]r=new double[][]{{0.75136507,0.772928465}};
 		double[][]o=new double[][]{{4,2,3},{1,2,3}};
-        double [][]y=new double[][]{{1}};
-		MatJa.impMat( MatJa.result(o,r));
+        double [][]y=new double[][]{{ 0.01}};
+		//MatJa.impMat( MatJa.result(o,r));
+       // MatJa.impMat( funcion_Act.sigm(y)[1]);
+        //MatJa.impMat(error.errCua(r,y)[0]);
+        MatJa.impMat(funcion_Act.sigm(r)[1]);
+           // MatJa.impMat(MatJa.restonVect(y,r));
         //MatJa.impMat(MatJa.result(x,w));
     //MatJa.impMat(MatJa.inse1(x,1));
        //MatJa.impMat (MatJa.ingre1(x,3));
