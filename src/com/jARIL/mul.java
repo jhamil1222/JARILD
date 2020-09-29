@@ -32,7 +32,7 @@ public class mul{
         int puerquito=0;
         int pollito=0;
         //revisar hay errores muy grandes aqui en esta funcion
-        if(prim[0].length!=sec.length&(prim.length!=1|prim[0].length!=1)){
+        if(((prim[0].length!=sec.length&(prim.length!=1|prim[0].length!=1))&prim[0].length!=sec[0].length)){
             System.out.println("error por favor corrige uno de estos");
 
             System.out.println("primero");
@@ -46,7 +46,9 @@ public class mul{
 
 
         }
-        if((prim.length!=1&((prim[0].length+prim.length== sec.length+sec[0].length)|sec[0].length==prim.length))||prim[0].length==sec.length) {
+       ;
+        if(prim[0].length== sec.length&&prim[0].length!=1)
+        {
 
 
             int i = 0, j = 0;
@@ -84,7 +86,7 @@ public class mul{
             int pan=0;
 
 
-            if(sec[0].length!=prim[0].length&prim[0].length!=1){
+            if(prim.length== sec[0].length&&prim.length!=1){
                 System.out.println("error por favor corrige uno de estos");
                 System.out.println("error tipo 2");
                 System.out.println("primero");
@@ -128,7 +130,7 @@ public class mul{
 
         }
             if(prim[0].length==1&sec.length==1){
-                System.out.println("error");
+
                 double[][]retado=new double[1][sec[0].length];
                 for (double[] pio :sec ) {
 
