@@ -14,25 +14,29 @@ public class modificacion {
             ArrayList<RedNeur> pil=poli.capa(topo,act);
             ArrayList<double[][]> funciAct=new ArrayList<>();
             double [][]r=new double[topo[topo.length-1]][topo.length];
+           //cada fila de w es para cada neurona
             double [][][]w={{{0.15,0.20},{0.25,0.30}},{{0.40,0.45},{0.50,0.55}}};
+            //definir b por neurona
             double [][]b={{0.35},{0.60}};
-            double [][][]pos={MatJa.memoriaFantasma(x)};
+            ArrayList <double [][]> polu=new ArrayList<>();
+            polu.add(MatJa.memoriaFantasma(x));
             for(int pio=0; pio<2; pio++){
 
-                double[][]z= MatJa.SumVect(MatJa.result(pos[pio],MatJa.matTi(w[pio])),b);
+                double[][]z= MatJa.SumVect(MatJa.result(polu.get(pio),MatJa.matTi(w[pio])),new double[][]{b[pio]});
                 /*aun experimental es switch de abajo falta mejorar relu y la capacidad de la red pero lo dejare como beta*/
                 switch(act[pio]){
                     case "sigm":
                         a= funcion_Act.sigm(z)[0];
-                        r=funcion_Act.sigm(z)[1];
+                        r=funcion_Act.sigm(a)[1];
                         break;
                     case "relu":
                         a=funcion_Act.relu(z)[0];
-                        r=funcion_Act.relu(z)[1];
+                        r=funcion_Act.relu(a)[1];
                         break;
                 }
-                pos=new double[][][]{x,a};
-                MatJa.impMat(z);
+                polu.add(a);
+                //pos=new double[][][]{x,a};
+
 
                 funciAct.add(a);
 
@@ -47,8 +51,8 @@ public class modificacion {
 
             }
 
-
-
+            //MatJa.impMat(error.errCua(funciAct.get(funciAct.size()-1),y)[1]);
+            MatJa.impMat(polilla.get(1));
 
 
             /*

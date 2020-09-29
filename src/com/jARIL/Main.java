@@ -12,7 +12,7 @@ public class Main {
 
         double[][]r=new double[][]{{0.75136507,0.772928465}};
 		double[][]o=new double[][]{{4,2,3},{1,2,3}};
-        double [][]y=new double[][]{{ 0.01}};
+        double [][]y=new double[][]{{ 0.01,0.99}};
 		//MatJa.impMat( MatJa.result(o,r));
        // MatJa.impMat( funcion_Act.sigm(y)[1]);
         //MatJa.impMat(error.errCua(r,y)[0]);
