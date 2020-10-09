@@ -21,7 +21,7 @@ public class MatJa extends inclusion{
 
         double[][] se;
         if(seg[0].length==1|| prim[0].length==1&&seg.length==1|prim.length==1){
-            jaula=new double[prim.length][seg.length];
+            //jaula=new double[prim.length][seg.length];
             se=seg;
             seg=prim;
             if(prim[0].length==1){
@@ -149,9 +149,9 @@ public class MatJa extends inclusion{
             int co=0;
             int colus=0;
             int pilo=0;
-            //error nuy grave revicion
+
             int tamaño=prim[0].length,taman=prim.length;
-            if(prim.length==1||prim[0].length==1){
+            if(prim.length==1&&prim[0].length==1){
 
                 tamaño=seg[0].length;
                 taman=seg.length;
@@ -208,6 +208,7 @@ public class MatJa extends inclusion{
 
         }
         return pabl;
+
     }
     public static double [][]ingresEnt(double [] []prim,double numero){
         int numi=0,gato=0;
@@ -274,7 +275,7 @@ public class MatJa extends inclusion{
 
             int tamaño=prim[0].length,taman=prim.length;
             if(prim.length==1&&prim[0].length==1){
-                System.out.println("me ejecuto");
+
                 tamaño=seg[0].length;
                 taman=seg.length;
             }
@@ -441,9 +442,9 @@ public class MatJa extends inclusion{
             int co=0;
             int colus=0;
             int pilo=0;
-            //error nuy grave revicion
+
             int tamaño=prim[0].length,taman=prim.length;
-            if(prim.length==1||prim[0].length==1){
+            if(prim.length==1&&prim[0].length==1){
 
                 tamaño=seg[0].length;
                 taman=seg.length;

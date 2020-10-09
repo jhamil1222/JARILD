@@ -49,65 +49,36 @@ public class modificacion {
 				pio++;
 
             }
-            double [][]nue=new double[1][1],uji=new double[1][1],ajo=new double[1][1];
-
             if(train){
-                ajo=funciAct.get(funciAct.size()-1);
-                /*problemilla con este lado por que tengo que utilizar la anterior capa a
-                esta esto incluye trabajar con capas ocultas mayores a 1 */
-                if(funciAct.size()-1!=1) {
-                    uji = funciAct.get(funciAct.size() - 2);
-                }
-                MatJa.impMat(polilla.get(polilla.size()-1));
-                MatJa.impMat(MatJa.mulTiGran(error.errCua(ajo,y)[1],polilla.get(polilla.size()-1)));
+                ArrayList <double[][]> delta=new ArrayList<>();
+                /*aqui nos encargaremos de procesar la neurona hacia atras en
+                un sentido aqui incluiremos el pase atras*/
+                /*nota para eliminar aqui tengo una duda pero creo que la resolvere
+                en todo caso iterare en el tamaño de */
+                double[][] _w=new double[0][0];
+                for(int numeri=funciAct.size()-1; numeri>=0; numeri--){
+                    if(numeri==funciAct.size()-1){
+                        /*hubo un error muy grabe con multigran y x ya que estos permitian la multiplicacion
+                        normal entre estos dos vectores
+                        *lo de abajao es facilmente interpretable como la multiplicacion de los deltas de la
+                        ultima capa*/
+                        //lo malo no me permite solo una capa oculta tendre que mejorar eso
+                        //deltaU.add(0,MatJa.mulTiGran(MatJa.mulTiGran(MatJa.mulTiGran(funciAct.get(funciAct.size()-2),error.errCua(funciAct.get(funciAct.size()-1),y)[1]),funciAct.get(funciAct.size()-1)),MatJa.restonVect(MatJa.ingresEnt(funciAct.get(funciAct.size()-1),1),funciAct.get(funciAct.size()-1))));
+                        delta.add(0,MatJa.mulTiGran(MatJa.mulTiGran(funciAct.get(funciAct.size()-2),error.errCua(funciAct.get(funciAct.size()-1),y)[1]),polilla.get(polilla.size()-1)));
 
-            }
-           // MatJa.impMat(error.errCua(funciAct.get(funciAct.size()-1),y)[0]);
-
-            //double [][]_w=new double[pil.get(0).pesos.length][pil.get(0).pesos[0].length];
-            /*double [][]al;
-
-            ArrayList<double[][]> perla=new ArrayList<>();
-
-            if(train){
-
-                //primero evaluamos la ultima capa
-
-                for(int reverso=funciAct.size()-1; reverso>=0; reverso--){
-
-                    al=funciAct.get(reverso);
-
-
-                    if(reverso==funciAct.size()-1){
-
-                        perla.add(0,MatJa.mulTiGran(error.errCua(al,y)[1],polilla.get(reverso)));
+                        //MatJa.impMat(MatJa.mulTiGran(MatJa.mulTiGran(funciAct.get(funciAct.size()-2),MatJa.restonVect(funciAct.get(funciAct.size()-1),y)),funciAct.get(funciAct.size()-1)));
 
                     }
+                    //corregir else
                     else {
 
-
-                        //MatJa.impMat(perla.get(0));
-                        //perla.add(MatJa.mulTiGran(MatJa.result(perla.get(0),MatJa.matTi(_w)),polilla.get(reverso)));
-
-                        perla.add(0,MatJa.x(MatJa.result(perla.get(0),MatJa.matTi(_w)),polilla.get(reverso)));
-
-
+                        delta.add(0,MatJa.result(delta.get(0),MatJa.matTi(_w)));
                     }
-                    _w=MatJa.memoriaFantasma(pil.get(reverso).pesos);
-                    //MatJa.GranmediaVect(new double[][]{{9,2,3},{2,2,7},{4,2,2}} );
-                    //MatJa.impMat(pil.get(reverso).pesos);
-                    //MatJa.impMat(_w);
 
-                /*RedNeur pli=new RedNeur();
-                pli.umbral =MatJa.restonVect(pil.get(reverso).umbral,MatJa.result(lr,MatJa.GranmediaVect(perla.get(0))));
-                pli.pesos =MatJa.restonVect(pil.get(reverso).pesos,MatJa.result(MatJa.matTi(funciAct.get(reverso)),MatJa.result(lr,perla.get(0))));
+                    _w=MatJa.memoriaFantasma(ponds[numeri-1].peso);
 
-                pil.set(reverso,pli);
-                MatJa.impMat(pil.get(reverso).pesos);
+                }
             }
-
-
-            }*/
 
 
 
