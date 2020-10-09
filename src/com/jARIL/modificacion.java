@@ -67,16 +67,21 @@ public class modificacion {
                         delta.add(0,MatJa.mulTiGran(MatJa.mulTiGran(funciAct.get(funciAct.size()-2),error.errCua(funciAct.get(funciAct.size()-1),y)[1]),polilla.get(polilla.size()-1)));
 
                         //MatJa.impMat(MatJa.mulTiGran(MatJa.mulTiGran(funciAct.get(funciAct.size()-2),MatJa.restonVect(funciAct.get(funciAct.size()-1),y)),funciAct.get(funciAct.size()-1)));
-
+						
                     }
+				    else{
+						//MatJa.impMat(ponds[numeri].peso);
+						delta.add(0,MatJa.result(delta.get(0),MatJa.memoriaFantasma(ponds[numeri].peso)));
+						MatJa.impMat(delta.get(0));
+					}
                     //corregir else
-                    else {
+                   /* else {
 
                         delta.add(0,MatJa.result(delta.get(0),MatJa.matTi(_w)));
                     }
 
                     _w=MatJa.memoriaFantasma(ponds[numeri-1].peso);
-
+					*/
                 }
             }
 
@@ -128,8 +133,8 @@ public class modificacion {
 class gatito{
     public double [][]peso, b;
     public void Cap(int neur,int con,double emp, double fin,boolean signo){
-        peso=MatJa.random(con,neur,emp,fin,signo);
-        b=MatJa.random(1,neur,emp,fin,signo);
+        peso=MatJa.random(con,neur,emp,fin);
+        b=MatJa.random(1,neur,emp,fin);
     }
 }
 
