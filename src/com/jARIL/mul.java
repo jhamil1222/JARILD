@@ -31,6 +31,30 @@ public class mul{
 
         int puerquito=0;
         int pollito=0;
+          int movi=0;
+        double [] [] pirata=new double[prim.length][sec[0].length];
+        if(prim[0].length==1&&sec.length==1){
+            
+           for(double [] puo: sec){
+               
+               for(int tos=0; tos<prim.length; tos++){
+                  movi=0;
+                   for(double pito: puo){
+                  
+                     pirata[tos][movi]= prim[tos][0]*sec[0][movi];
+                     //System.out.print(seg[0][movi]);
+                     //System.out.print(prim[mueve][0]);
+                     
+                     movi++;
+                   }
+                  
+                
+               }
+               
+               
+           }
+           return pirata;
+        }
         //revisar hay errores muy grandes aqui en esta funcion
         if(((prim[0].length!=sec.length&(prim.length!=1|prim[0].length!=1))&prim[0].length!=sec[0].length)){
             System.out.println("error por favor corrige uno de estos");
@@ -49,7 +73,7 @@ public class mul{
        ;
         if(prim[0].length== sec.length&&prim[0].length!=1)
         {
-
+                
 
             int i = 0, j = 0;
             //solo una fila
@@ -674,6 +698,8 @@ class inclusion extends unos
         return forma;
     }
     public static double[] []powVectM(double[][] prim,double[][]seg,boolean negaExp){
+     
+        
         int numi=0,gato=0;
         double[][]jaula=new double[prim.length][seg[0].length];
         for(double [] paso:prim) {

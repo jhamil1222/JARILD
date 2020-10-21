@@ -5,8 +5,17 @@ import java.util.ArrayList;
 public class modificacion {
         /**este es el train de modificacion se puede ingresar cualquier matriz en x pero eso si la topologia en la ultima capa tiene que tener
          * el mismo tamaño de filas que la salida que es y que quiero decir si tenemos y=array(1,2) entonces topo estara con el valor {2} por ser ultimo*/
-        public void train(int[] topo,String [] act,double [][]x,double[][]y, boolean train,double lr){
-
+    private gatito[] ponds;   
+    private double[][]x;
+    private int [] topo;
+    public modificacion(double [][]x,int []topo){
+        this.x=x;
+        this.topo=topo;
+    ponds=multicap(x,topo);
+    
+}
+    public double[][] train(String [] act,double[][]y, boolean train,double lr){
+            
             double [][]a=new double[topo[topo.length-1]][topo.length];
             //el proceso es el siguiente las neuronas bienen dadas el numero de neuronas que existen en la siguiente capa
             //tendras un numero de conexiones lo otro es que tendras que definir el numero de conexiones
@@ -14,7 +23,9 @@ public class modificacion {
             ArrayList<double[][]> polilla=new ArrayList<>();
             ArrayList<double[][]> funciAct=new ArrayList<>();
             double [][]r=new double[topo[topo.length-1]][topo.length];
-           gatito[] ponds=multicap(x,topo);
+            
+           
+           
 			boolean ejecut=true;
            // MatJa.impMat(ponds.multicap(x,new int[]{2,3,5,7})[3].b);
            //cada fila de w es para cada neurona
@@ -36,16 +47,17 @@ public class modificacion {
                         r=funcion_Act.relu(a)[1];
                         break;
                 }
-             
-                  
+                
+                
+                 //MatJa.impMat(pul.b);
                 polu.add(a);
                 //pos=new double[][][]{x,a};
                 funciAct.add(a);
-               
+              // MatJa.impMat(polu.get(pio));
+               //MatJa.impMat(ponds[pio].peso);
                   
                 polilla.add(r);
                 
-                //MatJa.impMat(MatJa.result(polu.get(pio),ponds[pio].peso));
                 //depues de depurar alrededor de 2 dias si se pudo corregir tanto result como red neur
                 //cualquier problema de claculo es culpa de MatJa.result corregir en depuracion
 
@@ -73,8 +85,8 @@ public class modificacion {
                         /**lo que se quiere hacer con esta parte es obtener el algorithmo de retropropagation por ello se toma la activacion de la penultima capa por
                          *la diferencia de la activacion de la ultima capa y el resultado esperado y a todo eso se le multiplica la derivada de la activacion de la ultima capa */
                         //derivada de la activacion por la derivada del error 
-                        
-                        deltaw.add(0,MatJa.mulTiGran(/*derivada del error*/error.errCua(funciAct.get(numeri),y)[1],/*aqui se ingresa la derivada activacion*/polilla.get(numeri)));
+                      //puse el false por que no quiero que se evalue el error en plena operacion 
+                        deltaw.add(0,MatJa.mulTiGran(/*derivada del error*/error.errCua(funciAct.get(numeri),y,false)[1],/*aqui se ingresa la derivada activacion*/polilla.get(numeri)));
                         //MatJa.impMat(funciAct.get(numeri));
                         //MatJa.impMat(y);
                         //MatJa.impMat(error.errCua(funciAct.get(funciAct.size()-1),y)[1]);
@@ -145,10 +157,11 @@ public class modificacion {
 					
                 
                 }
+                MatJa.impMat(error.errCua(funciAct.get(funciAct.size()-1), y, true)[0]);
             }
 
 
-
+            return funciAct.get(funciAct.size()-1);
 	
 
 
@@ -195,8 +208,10 @@ public class modificacion {
 class gatito{
     public double [][]peso, b;
     public void Cap(int neur,int con,double emp, double fin,boolean signo){
-        peso=MatJa.random(con,neur,emp,fin);
-        b=MatJa.random(1,neur,emp,fin);
+        
+        peso=MatJa.random(con,neur,emp,fin,true);
+        
+        b=MatJa.random(1,neur,emp,fin,true);
     }
 }
 

@@ -50,7 +50,8 @@ class entrenador{
     train=true;
 
     double[][]z=MatJa.SumVect(MatJa.result(neural_net.W,X),neural_net.b);
-        error.errCua(funcion_Act.sigm(z)[0],MatJa.random(z.length,z[0].length));
+    
+        error.errCua(funcion_Act.sigm(z)[0],MatJa.random(z.length,z[0].length),true);
 
     }
 

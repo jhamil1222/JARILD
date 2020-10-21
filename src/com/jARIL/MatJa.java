@@ -19,7 +19,30 @@ public class MatJa extends inclusion{
         int numi=0,gato=0;
         double[][]jaula=new double[seg.length][seg[0].length];
         boolean sota=true;
+        if(seg.length==1&&seg[0].length==1){
+           int puerquito=0;
+            int pollito=0;
+            int puito=0;
+            double[][]resultado=new double[prim.length][prim[0].length];
+            if(seg.length==1){
+                for(double[]poli:prim){
+                    pollito=0;
+                    puito=0;
 
+                    for(double pio:poli){
+                        resultado[puerquito][pollito]=seg[0][puito]+pio;
+                        if(puito<seg[0].length-1){
+                            puito++;
+                        }
+                        pollito++;
+                    }
+                    puerquito++;
+                }
+
+                return resultado;
+
+            } 
+        }
         double[][] se;
         if(seg[0].length==1|| prim[0].length==1&&seg.length==1|prim.length==1){
             //jaula=new double[prim.length][seg.length];

@@ -62,7 +62,7 @@ public class proceso{
 
                 if(reverso==funciAct.size()-1){
 
-                    perla.add(0,MatJa.mulTiGran(error.errCua(al,y)[1],polilla.get(reverso)));
+                    perla.add(0,MatJa.mulTiGran(error.errCua(al,y,true)[1],polilla.get(reverso)));
 
                 }
                 else {

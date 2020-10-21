@@ -101,11 +101,11 @@ public class pruebaCapas {
                 for (oli = 0; oli < w[gat][0].length; oli++) {
                     //aqui tenemos el error total evaluado en la ultima capa
 
-                    erri = error.errCua(y, capaact[numerito])[0][0][0];
+                    erri = error.errCua(y, capaact[numerito],true)[0][0][0];
 
                     //System.out.println(erri);
                     //derivada del error total en base a la salida final
-                    erro[gat] = -(error.errCua(y, capaact[numerito])[1][0][gat]);
+                    erro[gat] = -(error.errCua(y, capaact[numerito],true)[1][0][gat]);
 
                     //derivada de la activacion en base a la salida como tenemos 2 vectores no nos
                     //perocuparemos por los demas solo sabemos que serviran
