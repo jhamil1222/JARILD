@@ -1,6 +1,7 @@
 package com.jARIL;
 
 public class MatJa extends inclusion{
+    /**@author jhamil*/
     public static double sumatoriaV(double[][]op){
 
         double pan=0;
@@ -137,7 +138,60 @@ public class MatJa extends inclusion{
     }
     public static double[][] mulTiGran(double[][] prim,double[][]seg){
         double[][] pabl;
-
+         
+          int movi=0;
+        double [] [] pirata=new double[prim.length][seg[0].length];
+        if(prim[0].length==1&&seg.length==1){
+            
+           for(double [] puo: seg){
+               
+               for(int tos=0; tos<prim.length; tos++){
+                  movi=0;
+                   for(double pito: puo){
+                  
+                     pirata[tos][movi]= prim[tos][0]*seg[0][movi];
+                     //System.out.print(seg[0][movi]);
+                     //System.out.print(prim[mueve][0]);
+                     
+                     movi++;
+                   }
+                  
+                
+               }
+               
+               
+           }
+           return pirata;
+        }
+        
+        pabl=MatJa.memoriaFantasma(seg);
+        seg=MatJa.memoriaFantasma(prim);
+        prim=MatJa.memoriaFantasma(pabl);
+        
+        movi=0;
+        
+        if(prim[0].length==1&&seg.length==1){
+            
+           for(double [] puo: seg){
+               
+               for(int tos=0; tos<prim.length; tos++){
+                  movi=0;
+                   for(double pito: puo){
+                  
+                     //pirata[tos][movi]= prim[tos][0]*seg[0][movi];
+                    /* System.out.print(seg[0][movi]);
+                     System.out.print(prim[tos][0]);*/
+                     
+                     movi++;
+                   }
+                  
+                
+               }
+               
+               
+           }
+           return pirata;
+        }
         if(((((prim[0].length==1&&prim.length==1)||(seg[0].length==1&&seg.length==1))|| prim[0].length==seg[0].length)&((prim.length<=1&seg.length>=1)||(seg.length<=1&prim.length>=1)))||(seg.length==prim.length&&seg[0].length==prim[0].length)){
             if(seg.length>prim.length||seg[0].length>prim[0].length) {
                 pabl = new double[seg.length][seg[0].length];
@@ -260,7 +314,32 @@ public class MatJa extends inclusion{
     //aqui restaurare restonVect
     public static double[][] restonVect(double[][] prim,double[][]seg){
         double[][] pabl;
-
+       
+        int movi=0;
+        double [] [] pirata=new double[prim.length][seg[0].length];
+        if(prim[0].length==1&&seg.length==1){
+            
+           for(double [] puo: seg){
+               
+               for(int tos=0; tos<prim.length; tos++){
+                  movi=0;
+                   for(double pito: puo){
+                  
+                     pirata[tos][movi]= prim[tos][0]-seg[0][movi];
+                     //System.out.print(seg[0][movi]);
+                     //System.out.print(prim[mueve][0]);
+                     
+                     movi++;
+                   }
+                  
+                
+               }
+               
+               
+           }
+           return pirata;
+        }
+        
         if(((((prim[0].length==1&&prim.length==1)||(seg[0].length==1&&seg.length==1))|| prim[0].length==seg[0].length)&((prim.length<=1&seg.length>=1)||(seg.length<=1&prim.length>=1)))||(seg.length==prim.length&&seg[0].length==prim[0].length)){
            if(seg.length>prim.length||seg[0].length>prim[0].length) {
                pabl = new double[seg.length][seg[0].length];
@@ -503,7 +582,10 @@ public class MatJa extends inclusion{
         return pabl;
     }
     //me di cuenta de algo muy importante y que da problemas al evaluar el sesgo
+       /**
+        * funcion para sumar el sesgo esta en fase beta no usar*/
     public static double [][]SumaSesgada(double [][] gato,double[] sesgo){
+ 
         double [][]matr=new double[gato.length][gato[0].length];
         int polio=0;
         int para=0;

@@ -3,7 +3,8 @@ package com.jARIL;
 import java.util.ArrayList;
 
 public class modificacion {
-
+        /**este es el train de modificacion se puede ingresar cualquier matriz en x pero eso si la topologia en la ultima capa tiene que tener
+         * el mismo tamaño de filas que la salida que es y que quiero decir si tenemos y=array(1,2) entonces topo estara con el valor {2} por ser ultimo*/
         public void train(int[] topo,String [] act,double [][]x,double[][]y, boolean train,double lr){
 
             double [][]a=new double[topo[topo.length-1]][topo.length];
@@ -14,7 +15,7 @@ public class modificacion {
             ArrayList<double[][]> funciAct=new ArrayList<>();
             double [][]r=new double[topo[topo.length-1]][topo.length];
            gatito[] ponds=multicap(x,topo);
-			
+			boolean ejecut=true;
            // MatJa.impMat(ponds.multicap(x,new int[]{2,3,5,7})[3].b);
            //cada fila de w es para cada neurona
             ArrayList <double [][]> polu=new ArrayList<>();
@@ -24,6 +25,7 @@ public class modificacion {
 
                 double[][]z= MatJa.SumVect(MatJa.result(polu.get(pio),pul.peso),pul.b);
                 /*aun experimental es switch de abajo falta mejorar relu y la capacidad de la red pero lo dejare como beta*/
+                 
                 switch(act[pio]){
                     case "sigm":
                         a= funcion_Act.sigm(z)[0];
@@ -34,13 +36,15 @@ public class modificacion {
                         r=funcion_Act.relu(a)[1];
                         break;
                 }
-
+             
+                  
                 polu.add(a);
                 //pos=new double[][][]{x,a};
                 funciAct.add(a);
-
-
+               
+                  
                 polilla.add(r);
+                
                 //MatJa.impMat(MatJa.result(polu.get(pio),ponds[pio].peso));
                 //depues de depurar alrededor de 2 dias si se pudo corregir tanto result como red neur
                 //cualquier problema de claculo es culpa de MatJa.result corregir en depuracion
@@ -49,8 +53,10 @@ public class modificacion {
 				pio++;
 
             }
+            
             if(train){
-                ArrayList <double[][]> delta=new ArrayList<>();
+                ArrayList <double[][]> deltaw=new ArrayList<>();
+                ArrayList <double[][]> deltab=new ArrayList<>();
                 /*aqui nos encargaremos de procesar la neurona hacia atras en
                 un sentido aqui incluiremos el pase atras*/
                 /*nota para eliminar aqui tengo una duda pero creo que la resolvere
@@ -64,24 +70,80 @@ public class modificacion {
                         ultima capa*/
                         //lo malo no me permite solo una capa oculta tendre que mejorar eso
                         //deltaU.add(0,MatJa.mulTiGran(MatJa.mulTiGran(MatJa.mulTiGran(funciAct.get(funciAct.size()-2),error.errCua(funciAct.get(funciAct.size()-1),y)[1]),funciAct.get(funciAct.size()-1)),MatJa.restonVect(MatJa.ingresEnt(funciAct.get(funciAct.size()-1),1),funciAct.get(funciAct.size()-1))));
-                        delta.add(0,MatJa.mulTiGran(MatJa.mulTiGran(funciAct.get(funciAct.size()-2),error.errCua(funciAct.get(funciAct.size()-1),y)[1]),polilla.get(polilla.size()-1)));
-
+                        /**lo que se quiere hacer con esta parte es obtener el algorithmo de retropropagation por ello se toma la activacion de la penultima capa por
+                         *la diferencia de la activacion de la ultima capa y el resultado esperado y a todo eso se le multiplica la derivada de la activacion de la ultima capa */
+                        //derivada de la activacion por la derivada del error 
+                        
+                        deltaw.add(0,MatJa.mulTiGran(/*derivada del error*/error.errCua(funciAct.get(numeri),y)[1],/*aqui se ingresa la derivada activacion*/polilla.get(numeri)));
+                        //MatJa.impMat(funciAct.get(numeri));
+                        //MatJa.impMat(y);
+                        //MatJa.impMat(error.errCua(funciAct.get(funciAct.size()-1),y)[1]);
+                        //MatJa.impMat(polilla.get(polilla.size()-1));
+                        
+//deltab.add(0,MatJa.mulTiGran(error.errCua(funciAct.get(funciAct.size()-2),y)[1],/*aqui se ingresa la derivada activacion*/polilla.get(polilla.size()-1)));
                         //MatJa.impMat(MatJa.mulTiGran(MatJa.mulTiGran(funciAct.get(funciAct.size()-2),MatJa.restonVect(funciAct.get(funciAct.size()-1),y)),funciAct.get(funciAct.size()-1)));
-						
+			
                     }
-				    else{
-						//MatJa.impMat(ponds[numeri].peso);
-						delta.add(0,MatJa.result(delta.get(0),MatJa.memoriaFantasma(ponds[numeri].peso)));
-						MatJa.impMat(delta.get(0));
-					}
-                    //corregir else
-                   /* else {
-
-                        delta.add(0,MatJa.result(delta.get(0),MatJa.matTi(_w)));
+                    /*Matja.multigran es peligroso no usar mucho problemas muy serios con las multiplicaciones arreglar y proble,as faltantes por resolver no muy resueltos*/
+                    else{
+                        
+                        //deltaw.add(0,MatJa.mulTiGran(polilla.get(numeri),MatJa.result(deltaw.get(0),MatJa.matTi(_w))));
+                         //MatJa.impMat(MatJa.matTi(polilla.get(numeri)));
+                       /*despues de sufrir tanto descubri el hierro la gran respuesta de este descubrimiento de mi cabeza es la 
+                         siguiente afirmacion que tenemos que multiplicar matricialmente el resultado de la primera operacion por la matriz transpuesta de 
+                         w que biene dado a ser el w de ahora osea si tienes 4 neuronas el peso 3*/
+                     deltaw.add(0,MatJa.mulTiGran(polilla.get(numeri),MatJa.result(deltaw.get(0),MatJa.matTi(_w))));
+                     // MatJa.impMat(MatJa.mulTiGran(MatJa.matTi(_w),polilla.get(numeri)));
+                      //MatJa.impMat(_w);
+                      //MatJa.impMat(polilla.get(numeri));
+                       //2,1
+                     //MatJa.impMat(polilla.get(numeri));
+                        //MatJa.impMat(MatJa.matTi(_w));
+                     
+                    //deltaw.add(0,_w);
+                    
+                     //MatJa.impMat(deltaw.get(0));
+                    
+                    
+                      //MatJa.impMat(ponds[numeri].peso);
                     }
-
-                    _w=MatJa.memoriaFantasma(ponds[numeri-1].peso);
-					*/
+                    /*funciAct.add(funciAct.size()-1,x);*/
+                    _w=MatJa.memoriaFantasma(ponds[numeri].peso);
+                    
+                    
+                    
+                    
+                    //MatJa.impMat(_w);
+                    //MatJa.impMat(deltaw.get(0));
+                    //System.out.println("segundo rrrrrrrrrr");
+                    //MatJa.impMat(_w);
+                     
+                    /* MatJa.impMat(_w);*/
+                    
+                    ponds[numeri].b=MatJa.restonVect(ponds[numeri].b,MatJa.mulTiGran(MatJa.GranmediaVect(deltaw.get(0)),new double [][]{{lr}}));
+                    if(ejecut){
+                        ejecut=false;
+                        funciAct.add(0,x);
+                    }
+                    //agregamos x al pricipio por que cuenta como activacion
+                    ponds[numeri].peso=MatJa.restonVect(ponds[numeri].peso,MatJa.mulTiGran(MatJa.result(MatJa.matTi(funciAct.get(numeri)),deltaw.get(0)),new double [][]{{lr}}));
+                    
+                    
+                    //ponds[numeri].peso=MatJa.restonVect(ponds[numeri].peso,MatJa.mulTiGran(MatJa.result(MatJa.matTi(funciAct.get(numeri)),deltaw.get(0)),new double [][]{{lr}}));
+                    //olvide algo muy importante y es un rompecabezas literal la pieza fundamental X de la primera capa
+                    
+                    //MatJa.impMat(ponds[numeri].peso);
+                    //MatJa.impMat(MatJa.mulTiGran(MatJa.result(MatJa.matTi(funciAct.get(numeri)),deltaw.get(0)),new double [][]{{lr}}));
+                    //ponds[numeri].peso=MatJa.restonVect(ponds[numeri].peso,MatJa.mulTiGran(MatJa.result(MatJa.matTi(funciAct.get(numeri)),deltaw.get(0)),new double [][]{{lr}}));
+                    //ponds[numeri].peso=MatJa.restonVect(ponds[numeri].peso, );
+                    
+                      //MatJa.impMat(funciAct.get(numeri-1));
+                     //MatJa.impMat(funciAct.get(numeri));
+                    //ponds[numeri].peso=MatJa.restonVect(ponds[numeri].peso,MatJa.mulTiGran(MatJa.result(MatJa.matTi(funciAct.get(numeri)),deltaw.get(0)),new double [][]{{lr}}));
+                            
+                    
+					
+                
                 }
             }
 
