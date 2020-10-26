@@ -2,14 +2,14 @@ package com.jARIL;
 
 import java.util.ArrayList;
 
-public class modificacion {
+public class RedNeur {
         /**este es el train de modificacion se puede ingresar cualquier matriz en x pero eso si la topologia en la ultima capa tiene que tener
          * el mismo tamaño de filas que la salida que es y que quiero decir si tenemos y=array(1,2) entonces topo estara con el valor {2} por ser ultimo*/
     private gatito[] ponds;   
     private double[][]x;
     private int [] topo;
     private String [] acti;
-    public modificacion(double [][]x,int []topo){
+    public RedNeur(double [][]x,int []topo){
         this.x=x;
         this.topo=topo;
     ponds=multicap(x,topo);

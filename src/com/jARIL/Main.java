@@ -14,7 +14,7 @@ public class Main {
         double[][]r=new double[][]{{1},{1},{1},{1}};
 		double[][]o=new double[][]{{0,0},{1,0}};
         double [][]y=new double[][]{{1},{0}};
-        modificacion pul=new modificacion(x,new int[]{4,4,1});
+        RedNeur pul=new RedNeur(x,new int[]{4,4,1});
         double [][] poro=new double[0][0];
         //MatJa.impMat(MatJa.SumVect(r, o));
         for (int po=0; po<=50000; po++){
