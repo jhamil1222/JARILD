@@ -178,7 +178,7 @@ public class pruebaCapas {
         /*aqui estableci un control mucho mas riguroso de la salida esta bien que se entrene y todo pero al obtener
          *una salida de las capas sigmoidiales estas estan dadas por la cantidad de entradas y por ende el numero de
          * entradas genera lo que yo llamo entradas raras*/
-        System.out.printf("%.10f",error.errCua(y, capaact[a])[0][0][0]);
+        System.out.printf("%.10f",error.errCua(y, capaact[a],true)[0][0][0]);
 
 
     }

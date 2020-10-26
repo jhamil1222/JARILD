@@ -21,7 +21,7 @@ public class mul{
     /*una nota mia si tienes problemas con las matrices por favor solo establecelas de la siguiente forma{{}} es para
     * mantener una buena sintaxis pos data solo funcionara con doubles [][] pero ponet creativo un ejemplo {{1,2}}*{{0,1},{1,2}}*/
     public static double [][]result(double[][] prim,double [][] sec){
-
+            MatJa.comprobarDoMatriz(prim, sec);
         int columnas =prim.length, filas=sec[0].length,gato= prim[0].length;
         /*System.out.println(columnas);*/
         double [][]resultado=new double [columnas][filas];
@@ -32,7 +32,9 @@ public class mul{
         int puerquito=0;
         int pollito=0;
           int movi=0;
+        
         double [] [] pirata=new double[prim.length][sec[0].length];
+        
         if(prim[0].length==1&&sec.length==1){
             
            for(double [] puo: sec){
@@ -635,12 +637,12 @@ class unos extends entero {
 }
 
 class inclusion extends unos
-{
-    public static double mediaVect(double[]matriz){
-        /*el vector medio es la sumatoria del array y la divicion del numero de sus elementos
+{/**el vector medio es la sumatoria del array y la divicion del numero de sus elementos
          * gato=vector de tamaño l
          * medio = sumatoria de los elementos de gato "/" o dividido numero de elementos de gato
          * */
+    public static double mediaVect(double[]matriz){
+        
         double gato=0;
         for(double poli:matriz){
             gato+=poli;
@@ -648,11 +650,12 @@ class inclusion extends unos
         gato=gato/matriz.length;
         return gato;
     }
-    public static double[][] GranmediaVect(double[][]matriz){
-        /*el vector medio es la sumatoria del array y la divicion del numero de sus elementos
+    /**el vector medio es la sumatoria del array y la divicion del numero de sus elementos
          * gato=vector de tamaño l
          * medio = sumatoria de los elementos de gato "/" o dividido numero de elementos de gato
          * */
+    public static double[][] GranmediaVect(double[][]matriz){
+        
         double gato=0;
         double gat[][]=new double[1][matriz[0].length];
         int buo=0;
@@ -687,8 +690,9 @@ class inclusion extends unos
             numi++;
         }
         return jaula;
-    }
+    }/**eleva un vector a un numero*/
     public static double[] powVect(double[] palito,double exp){
+       
         double forma[]=new double[palito.length];
         int tempo=0;
         for(double poli:palito){
@@ -697,9 +701,12 @@ class inclusion extends unos
         }
         return forma;
     }
+    /**elevar una matriz a otra */
     public static double[] []powVectM(double[][] prim,double[][]seg,boolean negaExp){
-     
-        
+     MatJa.comprobarDoMatriz(prim, seg);
+        if(prim.length!=seg[0].length&&prim[0].length!=seg[0].length){
+         throw new ArrayIndexOutOfBoundsException("error corriga el primer numero que se elevara o el segubdsa que es el exponente");   
+        }
         int numi=0,gato=0;
         double[][]jaula=new double[prim.length][seg[0].length];
         for(double [] paso:prim) {

@@ -8,14 +8,69 @@ public class modificacion {
     private gatito[] ponds;   
     private double[][]x;
     private int [] topo;
+    private String [] acti;
     public modificacion(double [][]x,int []topo){
         this.x=x;
         this.topo=topo;
     ponds=multicap(x,topo);
     
 }
+public double[][] run(double [][] input){
+    double [][]a=new double[topo[topo.length-1]][topo.length];
+    //el proceso es el siguiente las neuronas bienen dadas el numero de neuronas que existen en la siguiente capa
+    //tendras un numero de conexiones lo otro es que tendras que definir el numero de conexiones
+    //en torno al numero de neuronas
+    ArrayList<double[][]> funciAct=new ArrayList<>();
+
+    // MatJa.impMat(ponds.multicap(x,new int[]{2,3,5,7})[3].b);
+    //cada fila de w es para cada neurona
+    ArrayList <double [][]> polu=new ArrayList<>();
+    polu.add(MatJa.memoriaFantasma(input));
+    int pio=0;
+    for(gatito pul:ponds){
+        /*MatJa.impMat(pul.peso);
+        System.out.println("perro tu segunda ");
+        MatJa.impMat(polu.get(pio));
+        */
+        
+        double[][]z= MatJa.SumVect(MatJa.result(polu.get(pio),pul.peso),pul.b);
+        /*aun experimental es switch de abajo falta mejorar relu y la capacidad de la red pero lo dejare como beta*/
+        
+        switch(acti[pio]){
+            case "sigm":
+                a= funcion_Act.sigm(z)[0];
+
+                break;
+            case "relu":
+                a=funcion_Act.relu(z)[0];
+
+                break;
+        }
+        /*System.out.println("tu resultado perro");
+        MatJa.impMat(z);
+        System.out.println("tu activacion perro");
+        MatJa.impMat(a);
+        System.out.println("feen");*/
+        polu.add(a);
+        //pos=new double[][][]{x,a};
+        funciAct.add(a);
+        // MatJa.impMat(polu.get(pio));
+        //MatJa.impMat(ponds[pio].peso);
+
+
+
+        //depues de depurar alrededor de 2 dias si se pudo corregir tanto result como red neur
+        //cualquier problema de claculo es culpa de MatJa.result corregir en depuracion
+
+        //x=a;
+        pio++;
+
+    }
+    return funciAct.get(funciAct.size()-1);
+
+}
     public double[][] train(String [] act,double[][]y, boolean train,double lr){
-            
+            acti=act;
             double [][]a=new double[topo[topo.length-1]][topo.length];
             //el proceso es el siguiente las neuronas bienen dadas el numero de neuronas que existen en la siguiente capa
             //tendras un numero de conexiones lo otro es que tendras que definir el numero de conexiones
@@ -47,8 +102,7 @@ public class modificacion {
                         r=funcion_Act.relu(a)[1];
                         break;
                 }
-                
-                
+
                  //MatJa.impMat(pul.b);
                 polu.add(a);
                 //pos=new double[][][]{x,a};
@@ -157,7 +211,8 @@ public class modificacion {
 					
                 
                 }
-                MatJa.impMat(error.errCua(funciAct.get(funciAct.size()-1), y, true)[0]);
+
+               // MatJa.impMat(error.errCua(funciAct.get(funciAct.size()-1), y, true)[0]);
             }
 
 
