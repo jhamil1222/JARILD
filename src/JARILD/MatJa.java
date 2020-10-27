@@ -1,5 +1,5 @@
 
-package com.jARIL;
+package JARILD;
 
 public class MatJa extends inclusion{
     /**@author jhamil*/

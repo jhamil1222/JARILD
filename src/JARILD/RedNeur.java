@@ -1,4 +1,4 @@
-package com.jARIL;
+package JARILD;
 
 import java.util.ArrayList;
 

@@ -1,46 +1,6 @@
-package com.jARIL;
+package JARILD;
 
-import java.security.SecureRandom;
-import java.util.Random;
-//import MatJa.MatJa;
-public class Main {
-       public static boolean iteracion=false;
-       
-    public static void main(String[] args) {
-   
-    //modificacion pi=new modificacion();
-    //nota no podras establecer neuronas de entrada mayores a las salidas
-        double[][]x=new double[][]{{1,0},{0,1}};
-        /*Nota aqui la entrada solo podra ser definida por una fila no se puede establecer una buen configuracion*/
-        double[][]r=new double[][]{{1},{1},{1},{1}};
-		double[][]o=new double[][]{{0,1},{1,0}};
-        double [][]y=new double[][]{{1},{0}};
-        JARILD pul=new JARILD();
-        
-        double [][] poro=new double[0][0];
-        //MatJa.impMat(MatJa.SumVect(r, o));
-        /*x,new int[]{4,4,1}
-        new String[]{"sigm","sigm","sigm"},y,false,0.01
-        */
-        pul.iteracion=true;
-        pul.MostrarEr=true;
-        //pul.MostrarEr=true;
-        pul.Neurona(new String[]{"sigm","sigm","sigm"},x,y, new int[]{4,4,1}, 0.4,200000);
-        
-        System.out.println("pruebas");
-        
-       /*
-        for(gatito poli:pul.UPentre){
-            MatJa.impMat(poli.peso);
-        }*/
-        MatJa.impMat(pul.run(o));
-       
-        
-    
-        //MatJa.powVectM(1, , true)
-       //MatJa.impMat(MatJa.result(o,r));
-    }}
- class JARILD {
+public  class NeuralNetwork {
      /**variable para poder ver la iteracion en plena ejecucion*/
      public boolean iteracion=false;
      

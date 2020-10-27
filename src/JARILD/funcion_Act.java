@@ -1,4 +1,4 @@
-package com.jARIL;
+package JARILD;
 
 public class funcion_Act {
     //reemplazar aqui todas la mul.result por perfor por tema de rendimiento
