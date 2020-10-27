@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class RedNeur {
         /**este es el train de modificacion se puede ingresar cualquier matriz en x pero eso si la topologia en la ultima capa tiene que tener
          * el mismo tamaño de filas que la salida que es y que quiero decir si tenemos y=array(1,2) entonces topo estara con el valor {2} por ser ultimo*/
-    private gatito[] ponds;   
+    public gatito[] ponds;   
+    
     private double[][]x;
     private int [] topo;
     private String [] acti;
@@ -16,6 +17,7 @@ public class RedNeur {
     
 }
 public double[][] run(double [][] input){
+    
     double [][]a=new double[topo[topo.length-1]][topo.length];
     //el proceso es el siguiente las neuronas bienen dadas el numero de neuronas que existen en la siguiente capa
     //tendras un numero de conexiones lo otro es que tendras que definir el numero de conexiones
@@ -27,6 +29,7 @@ public double[][] run(double [][] input){
     ArrayList <double [][]> polu=new ArrayList<>();
     polu.add(MatJa.memoriaFantasma(input));
     int pio=0;
+  
     for(gatito pul:ponds){
         /*MatJa.impMat(pul.peso);
         System.out.println("perro tu segunda ");
