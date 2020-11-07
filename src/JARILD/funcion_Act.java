@@ -22,6 +22,13 @@ public class funcion_Act {
         return new double[][][] {MatJa.MAX(MatJa.ingresEnt(x,0),x),MatJa.DIVect(MatJa.ingresEnt(x,1),MatJa.SumVect(MatJa.ingresEnt(x,1),MatJa.powVectM(MatJa.E(x.length, x[0].length),x,true)))};
         //return new double []{Math.max(0,x),1/(1+Math.pow(Math.E,-x))};
     }
+    public static double [][][] tanH(double [][]x)
+	{
+		double[][]tanh=MatJa.DIVect( MatJa.restonVect(MatJa.powVectM(MatJa.E(x.length,x[0].length),x,false),MatJa.powVectM(MatJa.E(x.length,x[0].length),x,true)),MatJa.SumVect(MatJa.powVectM(MatJa.E(x.length,x[0].length),x,false),MatJa.powVectM(MatJa.E(x.length,x[0].length),x,true)));
+		//MatJa.impMat(tanh);
+		double [][] deritanh=MatJa.powVectM(MatJa.DIVect(MatJa.ingresEnt(x,1), MatJa.DIVect( MatJa.SumVect (MatJa.powVectM(MatJa.E(x.length,x[0].length),x,false),MatJa.powVectM(MatJa.E(x.length,x[0].length),x,true)),MatJa.ingresEnt(x,2))),MatJa.ingresEnt(x,2),false);
+		return new double[][][]{tanh,deritanh};
+	}
 
 
 }

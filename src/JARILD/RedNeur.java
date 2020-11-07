@@ -48,6 +48,9 @@ public double[][] run(double [][] input){
                 a=funcion_Act.relu(z)[0];
 
                 break;
+            case "tanh":
+		a=funcion_Act.tanH(z)[0];
+           break;   
         }
         /*System.out.println("tu resultado perro");
         MatJa.impMat(z);
@@ -104,6 +107,11 @@ public double[][] run(double [][] input){
                         a=funcion_Act.relu(z)[0];
                         r=funcion_Act.relu(a)[1];
                         break;
+                    case "tanh":
+						//f=funcion_Act.tanH(z);
+			a=funcion_Act.tanH(z)[0];
+                        r=funcion_Act.tanH(a)[1];
+                        break;
                 }
 
                  //MatJa.impMat(pul.b);
@@ -119,7 +127,7 @@ public double[][] run(double [][] input){
                 //cualquier problema de claculo es culpa de MatJa.result corregir en depuracion
 
                 //x=a;
-				pio++;
+		pio++;
 
             }
             
