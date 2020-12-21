@@ -280,23 +280,25 @@ public class mul{
         }
     }
     public static void impMat (double [][] mat){
+        //por que imprimir directo si puedes formateralo antes en memoria y imprimirlo XD aprendi a la mala
+        String format="";
         int pol=0,corre=0,oi=0;
         boolean pil=false,coli=false;
         for(double [] poli:mat){
-          oi=0;
+            oi=0;
             for(double py:poli){
 
                 if(pol==0){
                     coli=true;
                 }
 
-                System.out.print(((coli)?"array[":"")+py+" ");
+                format+=((coli)?"array[":"")+py+" ";
                 if(oi==poli.length-1){
-                    System.out.print("]\n");
+                    format+="]\n";
 
                 }
 
-                    coli=false;
+                coli=false;
 
 
 
@@ -308,12 +310,13 @@ public class mul{
 
             }
             if(corre< mat.length-1){
-                System.out.print("     [");
+
+                format+="     [";
             }
             corre++;
 
         }
-
+        System.out.println(format);
     }
 
 }
