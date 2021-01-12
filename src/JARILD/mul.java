@@ -16,12 +16,12 @@ public class mul{
      * @version 0.0.1 Beta
      *
      * */
-    public static double [][]resulto;
+   
     /**pos data para todo la columna es la fila y la fila es la columna un toque de complejidad extra */
     /*una nota mia si tienes problemas con las matrices por favor solo establecelas de la siguiente forma{{}} es para
     * mantener una buena sintaxis pos data solo funcionara con doubles [][] pero ponet creativo un ejemplo {{1,2}}*{{0,1},{1,2}}*/
     public static double [][]result(double[][] prim,double [][] sec){
-            MatJa.comprobarDoMatriz(prim, sec);
+        MatJa.comprobarDoMatriz(prim, sec);
         int columnas =prim.length, filas=sec[0].length,gato= prim[0].length;
         /*System.out.println(columnas);*/
         double [][]resultado=new double [columnas][filas];
@@ -36,7 +36,7 @@ public class mul{
         double [] [] pirata=new double[prim.length][sec[0].length];
         
         if(prim[0].length==1&&sec.length==1){
-            
+        System.out.println("me ejecuto primero");    
            for(double [] puo: sec){
                
                for(int tos=0; tos<prim.length; tos++){
@@ -59,6 +59,7 @@ public class mul{
         }
         //revisar hay errores muy grandes aqui en esta funcion
         if(((prim[0].length!=sec.length&(prim.length!=1|prim[0].length!=1))&prim[0].length!=sec[0].length)){
+       
             System.out.println("error por favor corrige uno de estos");
 
             System.out.println("primero");
@@ -72,10 +73,10 @@ public class mul{
 
 
         }
-       ;
+       
         if(prim[0].length== sec.length&&prim[0].length!=1)
         {
-                
+                 System.out.println("me ejecuto segundo");   
 
             int i = 0, j = 0;
             //solo una fila
@@ -126,6 +127,7 @@ public class mul{
             }
 
             if (sec.length == 1&sec[0].length==prim[0].length) {
+                 System.out.println("me ejecuto tercero");   
                 double[][]retado=new double[1][prim.length];
                 for (double[] pio : prim) {
 
@@ -155,8 +157,8 @@ public class mul{
                 return retado;
 
         }
-            if(prim[0].length==1&sec.length==1){
-
+           /* if(prim[0].length==1&sec.length==1){
+                 System.out.println("me ejecuto cuarto");   
                 double[][]retado=new double[1][sec[0].length];
                 for (double[] pio :sec ) {
 
@@ -179,13 +181,17 @@ public class mul{
 
                 return retado;
 
-            }
+            }*/
             else{
                 System.out.println("error por favor corrige uno de estos");
                 System.out.println("primero");
+                //agregue flush por que este corrige la matriz de bytes que se pasan a print stream 
+                System.out.flush();
                 MatJa.impMat(prim);
                 System.out.println("segundo ");
+                System.out.flush();
                 MatJa.impMat(sec);
+                 System.out.flush();
                 System.out.println("error");
                 throw new ArrayIndexOutOfBoundsException("error por favor corrige prim o sec");
 
@@ -203,7 +209,7 @@ public class mul{
 
 
 
-        resulto=resultado;
+       
         return resultado;
     }
 
@@ -216,7 +222,7 @@ public class mul{
                 fila++;}
         }
         double [][] pili={mov};
-        resulto=pili;
+      
         return pili;
     }
     public static double[] result1F(double solo, double [] matriz ){
@@ -228,8 +234,8 @@ public class mul{
                 fila++;}
 
         }
-        double[][] pan={mov};
-        resulto=pan;
+    
+  
         return mov;
     }
 
@@ -250,14 +256,14 @@ public class mul{
             columna++;
         }
         //System.out.println(mov[columna][fila]);
-        resulto=mov;
+  
         return mov;
     }
 
     /**como en esta version incluyo fucniones estaticos ya no es nesesario esta funcion a pesar
      * de su utilidad pero por si acaso estara aqui pero como digo mejor eliminarla da mas
      * peso al archivo**/
-    public void getimpRe(){
+    /*public void getimpRe(){
         try {
         int a=0;
         boolean pil=false;
@@ -278,14 +284,15 @@ public class mul{
         }catch(NullPointerException ex){
             System.out.println("error no estableciste ninguna multplicacion con matrices por ello "+ex);
         }
-    }
+    }*/
+    
     public static void impMat (double [][] mat){
         //por que imprimir directo si puedes formateralo antes en memoria y imprimirlo XD aprendi a la mala
         String format="";
         int pol=0,corre=0,oi=0;
         boolean pil=false,coli=false;
         for(double [] poli:mat){
-            oi=0;
+          oi=0;
             for(double py:poli){
 
                 if(pol==0){
@@ -294,11 +301,11 @@ public class mul{
 
                 format+=((coli)?"array[":"")+py+" ";
                 if(oi==poli.length-1){
-                    format+="]\n";
+                   format+="]\n";
 
                 }
 
-                coli=false;
+                    coli=false;
 
 
 
@@ -316,7 +323,7 @@ public class mul{
             corre++;
 
         }
-        System.out.println(format);
+    System.out.println(format);
     }
 
 }
@@ -327,14 +334,14 @@ class matT extends mul{
      * @author JhamilRoldanLopez
      * @version 0.0.1*/
     static double [][]pancito;
-    @Override
+    /*@Override
     public void getimpRe(){
         /**
          * impresion de la matriz transpuesta
          */
-        super.resulto=pancito;
+     /*   super.resulto=pancito;
         super.getimpRe();
-    }
+    }*/
 
     public static double [][]matTi(double[][] pis)
     {/**llame a esta funcion para tener una matriz transpuesta */
@@ -375,14 +382,14 @@ class randMat extends matT{
     /**matrices randomicas justas para el desarrollo de machine learning */
     /**aqui ya agregue bien las filas y columnas que mas da total funciona*/
     static double[][] polilla;
-    @Override
+   /* @Override
     public void getimpRe(){
         /**
          * impresion de la matriz randomica
          */
-        super.resulto=polilla;
+     /*   super.resulto=polilla;
         super.getimpRe();
-    }
+    }*/
 
     static SecureRandom poy=new SecureRandom();
     public static double [][]random(/**numero de filas de la matriz */int filas, /**numero de columnas */int columnas){
@@ -618,17 +625,18 @@ class entero extends randMat {
 class unos extends entero {
     static double[][] pancito;
 
-    public void getimpRe() {
+    /*public void getimpRe() {
         /**
          * impresion de la matriz randomica
          */
-        super.resulto = pancito;
+      /*  super.resulto = pancito;
         super.getimpRe();
 
-    }
+    }*/
 
     public static double[][] insert(double[][] matriz, int Numcol) {
         if (Numcol >= matriz[0].length) {
+            
             throw new ArrayIndexOutOfBoundsException("error el numero de columnas sobrepasa al de la matris en " + (Numcol - matriz[0].length + 1) + "\n por favor ajusta el valor al valor que desees pero que no sobrepase el valor real que es " + (matriz[0].length - 1));
         }
         for (int fil = 0; fil < matriz.length; fil++) {
