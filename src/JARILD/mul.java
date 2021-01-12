@@ -36,7 +36,7 @@ public class mul{
         double [] [] pirata=new double[prim.length][sec[0].length];
         
         if(prim[0].length==1&&sec.length==1){
-        System.out.println("me ejecuto primero");    
+       // System.out.println("me ejecuto primero");    
            for(double [] puo: sec){
                
                for(int tos=0; tos<prim.length; tos++){
@@ -76,7 +76,7 @@ public class mul{
        
         if(prim[0].length== sec.length&&prim[0].length!=1)
         {
-                 System.out.println("me ejecuto segundo");   
+               //  System.out.println("me ejecuto segundo");   
 
             int i = 0, j = 0;
             //solo una fila
@@ -127,7 +127,7 @@ public class mul{
             }
 
             if (sec.length == 1&sec[0].length==prim[0].length) {
-                 System.out.println("me ejecuto tercero");   
+               //  System.out.println("me ejecuto tercero");   
                 double[][]retado=new double[1][prim.length];
                 for (double[] pio : prim) {
 
