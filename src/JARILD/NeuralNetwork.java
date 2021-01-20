@@ -15,10 +15,8 @@ public  class NeuralNetwork {
      public boolean MostrarEr=false;
      /**la funcion Neurona tiene que ser establecida antes que run tambien la ultima capa 
       *de la topologia tiene que si o si ser igual a las columnas de la salida para entrenar*/
-    public void Neurona(String [] activaciones,double[][] input,double [][] output,int[] topologia,double learningrate,int iteraciones){
-        int[] copito=new int[topologia.length+1];
-        int rop=0;
-       
+    public void Neurona(funcion_Act [] activaciones,double[][] input,double [][] output,int[] topologia,double learningrate,int iteraciones){
+        
         if(activaciones.length!=topologia.length){
             throw new IllegalArgumentException("tu neurona no es viable ya que las activaciones que definiste no son iguales a tu topologia");
         }

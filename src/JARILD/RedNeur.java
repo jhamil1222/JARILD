@@ -9,7 +9,7 @@ public class RedNeur {
     
     private double[][]x;
     private int [] topo;
-    private String [] acti;
+    private funcion_Act [] acti;
     public RedNeur(double [][]x,int []topo){
         this.x=x;
         this.topo=topo;
@@ -37,21 +37,9 @@ public double[][] run(double [][] input){
         */
         
         double[][]z= MatJa.SumVect(MatJa.result(polu.get(pio),pul.peso),pul.b);
-        /*aun experimental es switch de abajo falta mejorar relu y la capacidad de la red pero lo dejare como beta*/
-        
-        switch(acti[pio]){
-            case "sigm":
-                a= funcion_Act.sigm(z)[0];
-
-                break;
-            case "relu":
-                a=funcion_Act.relu(z)[0];
-
-                break;
-            case "tanh":
-		a=funcion_Act.tanH(z)[0];
-           break;   
-        }
+        /*aun experimental es switch de abajo falta mejorar relu y la capacidad de la red pero lo dejare ahora como una herencia de
+        *la clase funcion_Act ya que todos tienen z como un valor y seria interesante ya no evaluar Strings en el proceso*/
+        a=acti[pio].operation(z);
         /*System.out.println("tu resultado perro");
         MatJa.impMat(z);
         System.out.println("tu activacion perro");
@@ -75,8 +63,8 @@ public double[][] run(double [][] input){
     return funciAct.get(funciAct.size()-1);
 
 }
-    public double[][] train(String [] act,double[][]y, boolean train,double lr){
-            acti=act;
+    public double[][] train(funcion_Act []activaciones,double[][]y, boolean train,double lr){
+            acti=activaciones;
             double [][]a=new double[topo[topo.length-1]][topo.length];
             //el proceso es el siguiente las neuronas bienen dadas el numero de neuronas que existen en la siguiente capa
             //tendras un numero de conexiones lo otro es que tendras que definir el numero de conexiones
@@ -87,7 +75,7 @@ public double[][] run(double [][] input){
             
            
            
-			boolean ejecut=true;
+            boolean ejecut=true;
            // MatJa.impMat(ponds.multicap(x,new int[]{2,3,5,7})[3].b);
            //cada fila de w es para cada neurona
             ArrayList <double [][]> polu=new ArrayList<>();
@@ -97,22 +85,8 @@ public double[][] run(double [][] input){
 
                 double[][]z= MatJa.SumVect(MatJa.result(polu.get(pio),pul.peso),pul.b);
                 /*aun experimental es switch de abajo falta mejorar relu y la capacidad de la red pero lo dejare como beta*/
-                 
-                switch(act[pio]){
-                    case "sigm":
-                        a= funcion_Act.sigm(z)[0];
-                        r=funcion_Act.sigm(a)[1];
-                        break;
-                    case "relu":
-                        a=funcion_Act.relu(z)[0];
-                        r=funcion_Act.relu(a)[1];
-                        break;
-                    case "tanh":
-						//f=funcion_Act.tanH(z);
-			a=funcion_Act.tanH(z)[0];
-                        r=funcion_Act.tanH(a)[1];
-                        break;
-                }
+                 a=activaciones[pio].operation(z);
+                 r=activaciones[pio].derivada(a);
 
                  //MatJa.impMat(pul.b);
                 polu.add(a);
