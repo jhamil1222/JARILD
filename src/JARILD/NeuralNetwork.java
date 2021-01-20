@@ -17,9 +17,20 @@ public  class NeuralNetwork {
       *de la topologia tiene que si o si ser igual a las columnas de la salida para entrenar*/
     public void Neurona(funcion_Act [] activaciones,double[][] input,double [][] output,int[] topologia,double learningrate,int iteraciones){
         
-        if(activaciones.length!=topologia.length){
+        if(activaciones.length!=topologia.length-1){
             throw new IllegalArgumentException("tu neurona no es viable ya que las activaciones que definiste no son iguales a tu topologia");
         }
+        int conta=0;
+        int[] copito=new int[topologia.length+1];
+        for(int topi: topologia){
+            copito[conta]=topi;
+            
+                    conta++;
+        }
+       
+        copito[topologia.length]=output[0].length;
+      //System.out.println(copito[topologia.length]);
+        topologia=copito;
         guarda=new RedNeur(input,topologia);
         double [] [] salida=new double[3][3];
         for (int po=0; po<=iteraciones; po++){
