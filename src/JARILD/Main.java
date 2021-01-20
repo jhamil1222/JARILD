@@ -1,13 +1,15 @@
 /*
  * NOTA ESTE TEXTO ES SOLO PARA PRUEBAS Y MUESTRA DE EJMPLO DE COMO FUNCIONA 
  */
-package pruebasmej;
+package JARILD;
 
 
+import Funciones_Acti.*;
 import java.security.SecureRandom;
 import java.util.Random;
 //import MatJa.MatJa;
 import JARILD.NeuralNetwork;
+import JARILD.funcion_Act;
 public class Main {
        public static boolean iteracion=false;
        
@@ -30,7 +32,7 @@ public class Main {
         pul.iteracion=true;
         pul.MostrarEr=true;
         //pul.MostrarEr=true;
-        pul.Neurona(new String[]{"sigm","sigm","sigm"},x,y, new int[]{4,4,1}, 0.4,20000);
+        pul.Neurona(new funcion_Act[]{new sigm(), new relu(),new sigm(),new sigm()},x,y, new int[]{4,4,1}, 0.4,20000);
         
         System.out.println("pruebas");
         

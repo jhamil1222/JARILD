@@ -17,7 +17,7 @@ public  class NeuralNetwork {
       *de la topologia tiene que si o si ser igual a las columnas de la salida para entrenar*/
     public void Neurona(funcion_Act [] activaciones,double[][] input,double [][] output,int[] topologia,double learningrate,int iteraciones){
         
-        if(activaciones.length!=topologia.length-1){
+        if(activaciones.length!=topologia.length+1){
             throw new IllegalArgumentException("tu neurona no es viable ya que las activaciones que definiste no son iguales a tu topologia");
         }
         int conta=0;
