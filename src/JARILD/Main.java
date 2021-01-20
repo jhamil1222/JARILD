@@ -10,7 +10,6 @@ import java.util.Random;
 //import MatJa.MatJa;
 import JARILD.NeuralNetwork;
 import JARILD.funcion_Act;
-import MatJa.MatJa;
 public class Main {
        public static boolean iteracion=false;
        
@@ -33,7 +32,7 @@ public class Main {
         pul.iteracion=true;
         pul.MostrarEr=true;
         //pul.MostrarEr=true;
-        pul.Neurona(new funcion_Act[]{new sigm(), new relu(),new sigm(),new sigm()},x,y, new int[]{4,4,4}, 0.4,2000);
+        pul.Neurona(new funcion_Act[]{new sigm(), new relu(),new sigm(),new sigm()},x,y, new int[]{4,4,1}, 0.4,20000);
         
         System.out.println("pruebas");
         

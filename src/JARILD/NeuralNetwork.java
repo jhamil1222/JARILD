@@ -1,7 +1,5 @@
 package JARILD;
 
-import MatJa.MatJa;
-
 public  class NeuralNetwork {
      /**variable para poder ver la iteracion en plena ejecucion*/
      public boolean iteracion=false;
@@ -20,7 +18,7 @@ public  class NeuralNetwork {
     public void Neurona(funcion_Act [] activaciones,double[][] input,double [][] output,int[] topologia,double learningrate,int iteraciones){
         
         if(activaciones.length!=topologia.length+1){
-            throw new IllegalArgumentException("tu neurona no es viable ya que las activaciones que definiste no se permiten");
+            throw new IllegalArgumentException("tu neurona no es viable ya que las activaciones que definiste no son iguales a tu topologia");
         }
         int conta=0;
         int[] copito=new int[topologia.length+1];

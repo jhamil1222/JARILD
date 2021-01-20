@@ -1,6 +1,5 @@
 package JARILD;
 
-import MatJa.MatJa;
 import java.util.ArrayList;
 
 public class RedNeur {
